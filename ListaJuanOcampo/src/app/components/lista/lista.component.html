@@ -1,0 +1,14 @@
+<div class="lista">
+  <h1>Listado de Alumnos</h1>
+  <ul>
+    <li *ngFor="let item of listadoalumnos"
+        [ngClass]="(item.activo)?'item-activo':'item-inactivo'">
+          {{item.nombre}}
+          <img width="20" src="./assets/images/{{item.pais.id}}.png">
+          <span *ngIf="item.pais.id == 'AR'" class=""> (Mismo país que yo)</span>
+    </li>
+  </ul>
+
+  <h2>El mejor alumnos de la clase del día es: {{mejorAlumno | json}}</h2>
+
+</div>
