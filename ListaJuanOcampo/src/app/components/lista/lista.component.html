@@ -1,14 +1,13 @@
 <div class="lista">
-  <h1>Listado de Alumnos</h1>
-  <ul>
-    <li *ngFor="let item of listadoalumnos"
-        [ngClass]="(item.activo)?'item-activo':'item-inactivo'">
-          {{item.nombre}}
-          <img width="20" src="./assets/images/{{item.pais.id}}.png">
-          <span *ngIf="item.pais.id == 'AR'" class=""> (Mismo país que yo)</span>
+
+  <h1 class="font-weight-normal text-center">Listado de Alumnos</h1>
+  <ul class="list-group">
+    <li *ngFor="let item of listadoalumnos" [ngClass]="(item.activo)?'list-group-item-primary list-group-item':'list-group-item-secondary list-group-item'">{{item.nombre}}
+      <img width="20" src="./assets/images/{{item.pais.id}}.png">
+      <span *ngIf="item.pais.id == 'AR'" class=""> (Mismo país que yo)</span>
     </li>
   </ul>
 
-  <h2>El mejor alumnos de la clase del día es: {{mejorAlumno | json}}</h2>
-
+  <hr>
+  <span>El mejor alumnos de la clase del día es: </span><span>{{mejorAlumno | json}}</span>
 </div>
