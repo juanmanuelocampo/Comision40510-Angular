@@ -1,0 +1,60 @@
+<h3 class="pl-2">Formulario de Login</h3>
+<form [formGroup]="formularioLogin" (ngSubmit)="login()">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input formControlName="correo" type="email"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <app-validacion
+          [ExisteError]="formularioLogin.controls['correo'].invalid"
+          [valrequerido]="formularioLogin.controls['correo'].dirty && formularioLogin.controls['correo'].errors?.['required']"
+          [valpatron]="formularioLogin.controls['correo'].dirty && formularioLogin.controls['correo'].errors?.['pattern']">
+    </app-validacion>
+  </div>
+
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input formControlName="contrasena" type="password" class="form-control" id="exampleInputPassword1">
+    <app-validacion
+          [ExisteError]="formularioLogin.controls['contrasena'].invalid"
+          [valrequerido]="formularioLogin.controls['contrasena'].dirty && formularioLogin.controls['contrasena'].errors?.['required']">
+    </app-validacion>
+  </div>
+
+  <div class="mb-3 form-check">
+    <input formControlName="recordarCredenciales" type="checkbox" class="form-check-input" id="flexCheckDefault">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+
+  <button type="submit" [disabled]="formularioLogin.invalid" class="btn btn-primary">Aceptar</button>
+  <button type="reset" class="btn btn-primary ms-2">Cancelar</button>
+</form>
+
+<hr>
+<h3 class="mt-4">Formulario de Estudiante</h3>
+<form [formGroup]="formularioEstudiante" (ngSubmit)="loginEstudiante()">
+  <div class="mb-3">
+    <label for="estudiante-id" class="form-label">Id</label>
+    <input formControlName="id" type="text"  class="form-control" id="estudiante-id" aria-describedby="emailHelp">
+  </div>
+  <div class="mb-3">
+    <label for="estudiante-nombre" class="form-label">Nombre</label>
+    <input formControlName="nombre" type="text"  class="form-control" id="estudiante-nombre" aria-describedby="emailHelp">
+    <app-validacion
+          [ExisteError]="formularioEstudiante.controls['nombre'].invalid"
+          [valminlength]="formularioEstudiante.controls['nombre'].dirty && formularioEstudiante.controls['nombre'].errors?.['minlength']">
+          [valrequerido]="formularioEstudiante.controls['nombre'].dirty && formularioEstudiante.controls['nombre'].errors?.['required']">
+    </app-validacion>
+  </div>
+  <div class="mb-3">
+    <label for="estudiante-domicilio" class="form-label">Domicilio</label>
+    <input formControlName="domicilio" type="text"  class="form-control" id="estudiante-domicilio" aria-describedby="emailHelp">
+    <app-validacion
+          [ExisteError]="formularioEstudiante.controls['domicilio'].invalid"
+          [valrequerido]="formularioEstudiante.controls['domicilio'].dirty && formularioEstudiante.controls['domicilio'].errors?.['required']"
+          [valminlength]="formularioEstudiante.controls['domicilio'].dirty && formularioEstudiante.controls['domicilio'].errors?.['minlength']">
+          >
+    </app-validacion>
+  </div>
+
+  <button type="submit" [disabled]="formularioEstudiante.invalid" class="btn btn-primary">Aceptar</button>
+  <button type="reset" class="btn btn-primary ms-2">Cancelar</button>
+</form>
