@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { Curso } from 'src/models/curso';
+import { Curso } from 'src/models/Curso';
 
 
 @Component({
