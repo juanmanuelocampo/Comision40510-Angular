@@ -1,4 +1,6 @@
-export interface alumno{
+export interface Alumno{
     id:number,
-    nombre:string
+    nombre:string,
+    apellido:string,
+    email:string
 }

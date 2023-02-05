@@ -1,0 +1,33 @@
+<mat-sidenav-container class="example-container" autosize >
+  <mat-sidenav #drawer class="example-sidenav" mode="side" [mode]="'over'">
+    <mat-nav-list>
+      <mat-list-item class="parent">
+        <span class="full-width">Usuarios</span>
+        <!-- <mat-icon mat-list-icon>account_circle</mat-icon> -->
+      </mat-list-item>
+      <mat-list-item class="parent">
+        <span class="full-width">Alumnos</span>
+        <!-- <mat-icon mat-list-icon>account_circle</mat-icon> -->
+      </mat-list-item>
+      <mat-list-item class="parent">
+        <span class="full-width">Profesores</span>
+        <!-- <mat-icon mat-list-icon>account_circle</mat-icon> -->
+      </mat-list-item>
+      <mat-list-item class="parent">
+        <span class="full-width">Cursos</span>
+        <!-- <mat-icon mat-list-icon>account_circle</mat-icon> -->
+      </mat-list-item>
+      <mat-list-item class="parent">
+        <span class="full-width">Inscripciones</span>
+        <!-- <mat-icon mat-list-icon>account_circle</mat-icon> -->
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+      <app-content></app-content> <!-- Formulario de alumno -->
+      <button mat-flat-button color="warn" (click)="drawer.toggle()">Abrir Menú</button>
+  </mat-sidenav-content>
+
+
+</mat-sidenav-container>

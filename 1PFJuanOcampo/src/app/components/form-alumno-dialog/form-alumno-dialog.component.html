@@ -1,0 +1,24 @@
+<h1 mat-dialog-header>Agregar/Editar alumno </h1>
+<p>(Pendiente: poner título según estado ventana)</p>
+
+<div mat-dialog-content>
+    <form [formGroup]="formulario">
+        <div class="row">
+          <input type="text" formControlName="id" class="form-control" placeholder="Id">
+        </div>
+        <div class="row">
+          <input type="text" formControlName="nombre" class="form-control" placeholder="Nombre">
+        </div>
+        <div class="row">
+          <input type="text" formControlName="apellido" class="form-control" placeholder="Apellido">
+        </div>
+        <div class="row">
+          <input type="text" formControlName="email" class="form-control" placeholder="E-Mail">
+        </div>
+    </form>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="this.formulario.value" cdkFocusInitial>Aceptar</button>
+  <button mat-button (click)="CerrarModal()">Cancelar</button>
+</div>
