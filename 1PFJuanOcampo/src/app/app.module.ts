@@ -13,6 +13,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { ContentComponent } from './components/content/content.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 
+import { FormatoEdadPipe } from './pipes/formato-edad.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +23,8 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
     FooterComponent,
     HeaderComponent,
     ContentComponent,
-    SidenavComponent
+    SidenavComponent,
+    FormatoEdadPipe,
   ],
   imports: [
     BrowserModule,

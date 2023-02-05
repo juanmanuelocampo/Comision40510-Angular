@@ -1,3 +1,4 @@
+import { NodeWithI18n } from '@angular/compiler';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
@@ -13,12 +14,12 @@ import { FormAlumnoDialogComponent } from '../form-alumno-dialog/form-alumno-dia
 export class TablaalumnoComponent {
   estadoventana :string = 'consulta';
   alumnos: Array<Alumno> = [
-    {id:1, nombre:'Freddy', apellido:'apellido1', email:'freddy@freddy.com'},
-    {id:2, nombre:'Eliceo', apellido:'apellido2', email:'eliceo@eliceo.com'},
-    {id:3, nombre:'Abner', apellido:'apellido3', email:'abner@abner.com'}
+    {id:1, nombre:'Freddy', apellido:'apellido1', email:'freddy@freddy.com', fecnac: new Date(1981, 7, 7)},
+    {id:2, nombre:'Eliceo', apellido:'apellido2', email:'eliceo@eliceo.com', fecnac: new Date(1982, 7, 7)},
+    {id:3, nombre:'Abner', apellido:'apellido3', email:'abner@abner.com', fecnac: new Date(1983, 7, 7)}
   ];
   dataSource: MatTableDataSource<Alumno> = new MatTableDataSource<Alumno>(this.alumnos);
-  columnas: Array<string> = ['id', 'nombre', 'apellido', 'email', 'acciones'];
+  columnas: Array<string> = ['id', 'nombre', 'apellido', 'email', 'fecnac', 'edad', 'acciones'];
 
 constructor(
     private dialog: MatDialog
@@ -48,7 +49,8 @@ constructor(
       id: 0,
       nombre: '',
       apellido:'',
-      email:''
+      email:'',
+      fecnac: new Date(1900, 1, 1),
     };
 
     this.estadoventana = 'alta';
