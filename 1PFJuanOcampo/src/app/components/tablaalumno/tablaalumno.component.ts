@@ -34,7 +34,7 @@ constructor(
     dialogRef.afterClosed().subscribe(alumno => {
       if(alumno != undefined){
           this.alumnos.splice(this.alumnos.findIndex(item => item.id == alumno.id), 1, alumno);
-          this.dataSource.data = this.dataSource.data; //Esta línea no me gusta, pero es la única forma que encontré para actualizar la grilla
+          this.dataSource.data = this.dataSource.data; //Revisar tutor: Esta línea no me gusta, pero es la única forma que encontré para actualizar la grilla
       }
     });
   }
@@ -42,7 +42,7 @@ constructor(
   Eliminar(alumno:Alumno){
     console.log('Eliminar:',alumno, this.alumnos.findIndex(item => item.id == alumno.id));
     this.alumnos.splice(this.alumnos.findIndex(item => item.id == alumno.id), 1);
-    this.dataSource.data = this.dataSource.data; //Esta línea no me gusta, pero es la única forma que encontré para actualizar la grilla
+    this.dataSource.data = this.dataSource.data; //Revisar tutor: Esta línea no me gusta, pero es la única forma que encontré para actualizar la grilla
   }
   ModoAlta(){
     let item: Alumno = {
@@ -61,7 +61,7 @@ constructor(
     dialogRef.afterClosed().subscribe(item => {
       if(item != undefined){
           this.alumnos.push(item);
-          this.dataSource.data = this.dataSource.data; //Esta línea no me gusta, pero es la única forma que encontré para actualizar la grilla
+          this.dataSource.data = this.dataSource.data; //Revisar tutor: Esta línea no me gusta, pero es la única forma que encontré para actualizar la grilla
       }
     });
   }
