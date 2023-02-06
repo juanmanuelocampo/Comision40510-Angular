@@ -1,4 +1,4 @@
-import { NodeWithI18n } from '@angular/compiler';
+
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
@@ -28,7 +28,7 @@ constructor(
   ModoEdicion(alumno:Alumno){
     this.estadoventana = 'edicion';
     const dialogRef = this.dialog.open(FormAlumnoDialogComponent, {
-      data: {...alumno, estadoventana:'edicion'}
+      data: {...alumno, estadoventana:'edicion'} //Revisar tutor: es una buena práctica la forma en que envío el estadoventana?
     });
 
     dialogRef.afterClosed().subscribe(alumno => {

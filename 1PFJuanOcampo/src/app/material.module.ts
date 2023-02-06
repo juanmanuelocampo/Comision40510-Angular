@@ -10,6 +10,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 //////////
@@ -33,7 +34,8 @@ import {HttpClientModule} from '@angular/common/http';
     MatListModule,
     BrowserModule,
     BrowserAnimationsModule,
-    FormsModule, ReactiveFormsModule, MatNativeDateModule, HttpClientModule
+    FormsModule, ReactiveFormsModule, MatNativeDateModule, HttpClientModule,
+    MatFormFieldModule,
   ],
   exports: [
     MatTableModule,
@@ -46,7 +48,8 @@ import {HttpClientModule} from '@angular/common/http';
     MatListModule,
     BrowserModule,
     BrowserAnimationsModule,
-    FormsModule, ReactiveFormsModule, MatNativeDateModule, HttpClientModule
+    FormsModule, ReactiveFormsModule, MatNativeDateModule, HttpClientModule,
+    MatFormFieldModule,
   ],
 })
 export class MaterialModule { }

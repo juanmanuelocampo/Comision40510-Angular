@@ -12,6 +12,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ContentComponent } from './components/content/content.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { ValidacionComponent } from './components/validacion/validacion.component';
 
 import { FormatoEdadPipe } from './pipes/formato-edad.pipe';
 
@@ -25,6 +26,7 @@ import { FormatoEdadPipe } from './pipes/formato-edad.pipe';
     ContentComponent,
     SidenavComponent,
     FormatoEdadPipe,
+    ValidacionComponent,
   ],
   imports: [
     BrowserModule,
