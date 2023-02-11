@@ -1,0 +1,9 @@
+<hr>
+<h1>Observables</h1>
+<ul>
+    <li *ngFor="let item of alumnos$ | async">{{ item.nombre + ', ' + item.apellido }}</li>    
+</ul>
+
+<p>{{ alumnosfiltrados | json }}</p>
+
+
