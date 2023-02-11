@@ -2,7 +2,9 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { Alumno } from 'src/models/Alumno';
+import { Subscription } from 'rxjs';
+import { Alumno } from 'src/app/models/Alumno';
+import { AlumnoService } from 'src/app/services/alumno.service';
 import { FormAlumnoDialogComponent } from '../form-alumno-dialog/form-alumno-dialog.component';
 
 
@@ -21,9 +23,35 @@ export class TablaalumnoComponent {
   dataSource: MatTableDataSource<Alumno> = new MatTableDataSource<Alumno>(this.alumnos);
   columnas: Array<string> = ['id', 'nombre', 'apellido', 'email', 'fecnac', 'edad', 'acciones'];
 
+  suscripcion!: Subscription; //acacaservicio
+
 constructor(
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private alumnoService: AlumnoService, //acacaservicio
   ){}
+
+  //acacaServicio desde
+  ngOnInit(): void {
+    console.log("Instanciando MatTAbleDataSource");
+    this.dataSource = new MatTableDataSource<Alumno>();
+    this.suscripcion = this.alumnoService.obtenerAlumnosObservable().subscribe((alumnos: Alumno[]) => {
+      console.log("Agregando datos al MatTAbleDataSource");
+      this.dataSource.data = alumnos;
+    });
+    console.log("Ultima linea del ngOnInit");
+  }
+
+  ngOnDestroy(){
+    this.suscripcion.unsubscribe();
+  }
+  //acacaServicio hasta
+
+  agregarAlumnoDesdeComponente(){
+    let c: Alumno = {
+      id:1, nombre:'Freddy', apellido:'apellido1', email:'freddy@freddy.com', fecnac: new Date(1981, 7, 7)
+      }
+      this.alumnoService.agregarAlumno(c);
+  }
 
   ModoEdicion(alumno:Alumno){
     this.estadoventana = 'edicion';
