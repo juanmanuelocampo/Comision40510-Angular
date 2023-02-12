@@ -15,46 +15,48 @@ export class AlumnoService {
   private alumnos$!: BehaviorSubject<Alumno[]>;
 
   constructor() {
-    this.alumnos$ = new BehaviorSubject(this.alumnos);
-    // this.cursos$ = new Observable<Curso[]>((suscriptor) => {
-    //   suscriptor.next(this.cursos);
-
-    //   setTimeout(()=>{
-    //     let c: Curso = {
-    //       nombre: 'Angular Avanzando - Desde el Observable',
-    //       comision: '34022',
-    //       fechaInicio: new Date(),
-    //       fechaFin: new Date(),
-    //       inscripcionAbierta: true,
-    //       profesor: {
-    //         nombre: 'Ulises',
-    //         correo: 'ulises@gmail.com',
-    //         fechaRegistro: new Date()
-    //       }
-    //     };
-    //     this.cursos.push(c);
-    //     suscriptor.next(this.cursos);
-    //   }, 2000);
-    // });
+    this.alumnos$ = new BehaviorSubject(this.alumnos); //Lo inicializo con los valores iniciales
   }
 
-  /* obtenerAlumnosPromise(): Promise<Alumno[]>{
+  nuevoAlumno: Alumno = {
+    id: 0,
+    nombre: '',
+    apellido:'',
+    email:'',
+    fecnac: new Date(1900, 1, 1),
+  };
+
+  /* obtenerAlumnosPromeses(): Promise<Array<Alumno>>{
     return new Promise((resolve, reject) => {
-      if(this.cursos.length > 0){
-        resolve(this.cursos);
-      }else{
-        reject([]);
-      }
-    });
+        if(this.alumnos.length > 0){
+            resolve(this.alumnos);
+        }else{
+            reject([]);
+        }
+    })
   }
  */
+
   obtenerAlumnosObservable(): Observable<Alumno[]>{
     return this.alumnos$.asObservable();
   }
 
   agregarAlumno(alumno: Alumno){
     this.alumnos.push(alumno);
-    this.alumnos$.next(this.alumnos);
+    this.alumnos$.next(this.alumnos); //aviso a todos los subscriptores
     console.log('Alumno agregado', this.alumnos);
+  }
+
+  editarAlumno(alumno: Alumno){
+    this.alumnos.splice(this.alumnos.findIndex(item => item.id == alumno.id), 1, alumno);
+    this.alumnos$.next(this.alumnos); //aviso a todos los subscriptores
+    console.log('Alumno editado', this.alumnos);
+  }
+
+  eliminarAlumno(alumno: Alumno){
+    console.log('Eliminar:',alumno, this.alumnos.findIndex(item => item.id == alumno.id));
+    this.alumnos.splice(this.alumnos.findIndex(item => item.id == alumno.id), 1);
+
+    this.alumnos$.next(this.alumnos); //aviso a todos los subscriptores
   }
 }

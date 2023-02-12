@@ -43,8 +43,8 @@
   </form>
 
   <div mat-dialog-actions>
-    <button mat-flat-button [disabled]="formulario.invalid" color="primary" [mat-dialog-close]="this.formulario.value" cdkFocusInitial>Aceptar</button>
-    <button mat-flat-button color="warn" (click)="CerrarModal()">Cancelar</button>
+    <button mat-flat-button (click)="aceptar()" [disabled]="formulario.invalid" color="primary" [mat-dialog-close]="this.formulario.value" cdkFocusInitial>Aceptar</button>
+    <button mat-flat-button color="warn" (click)="cerrarModal()">Cancelar</button>
   </div>
 
 </div>

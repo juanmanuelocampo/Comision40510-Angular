@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Alumno } from 'src/app/models/Alumno';
 import { AlumnoService } from 'src/app/services/alumno.service';
 
 @Component({
@@ -15,8 +14,8 @@ export class FormAlumnoDialogComponent  implements OnInit {
 
     constructor(
       private dialogRef: MatDialogRef<FormAlumnoDialogComponent>,
-      private alumnoService: AlumnoService, //acacaservicio
       @Inject(MAT_DIALOG_DATA) public data: any,
+      private alumnoService: AlumnoService,
     ){
       this.formulario = new FormGroup({
         id: new FormControl((this.data.estadoventana === 'edicion')?data.id: '', Validators.required),
@@ -26,30 +25,19 @@ export class FormAlumnoDialogComponent  implements OnInit {
         fecnac: new FormControl((this.data.estadoventana === 'edicion')?data.fecnac: '', Validators.required),
       })
     }
-
-    //acacaServicio desde
-  ngOnInit(): void {
-    //console.log("Instanciando MatTAbleDataSource");
-    //this.dataSource = new MatTableDataSource<Alumno>();
-    //this.suscripcion = this.alumnoService.obtenerAlumnosObservable().subscribe((alumnos: Alumno[]) => {
-    //  console.log("Agregando datos al MatTAbleDataSource");
-    //  this.dataSource.data = alumnos;
-    //});
-    //console.log("Ultima linea del ngOnInit");
-  }
-
-  ngOnDestroy(){
-    //this.suscripcion.unsubscribe();
-  }
-    agregarAlumnoDesdeComponenteABM(){
-      let c: Alumno = {
-        id:1, nombre:'Freddy', apellido:'apellido1', email:'freddy@freddy.com', fecnac: new Date(1981, 7, 7)
-        }
-        this.alumnoService.agregarAlumno(c);
+    ngOnInit(): void {
     }
-    //acacaServicio hasta
 
-    CerrarModal(): void {
+    aceptar(){
+      ((this.data.estadoventana === 'edicion')?this.editarAlumnoDesdeComponenteABM():this.agregarAlumnoDesdeComponenteABM());
+    }
+    agregarAlumnoDesdeComponenteABM(){
+        this.alumnoService.agregarAlumno(this.formulario.value);
+    }
+    editarAlumnoDesdeComponenteABM(){
+      this.alumnoService.editarAlumno(this.formulario.value);
+    }
+    cerrarModal(): void {
       this.dialogRef.close();
     }
 }
