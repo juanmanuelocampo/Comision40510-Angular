@@ -36,7 +36,7 @@
   <!-- Columna de Activo -->
   <ng-container matColumnDef="activo">
     <th mat-header-cell *matHeaderCellDef>Activo</th>
-    <td mat-cell *matCellDef="let element">{{ element.activo | booleanoATexto: 'Sí': 'No' }}</td>
+    <td mat-cell *matCellDef="let element" [appBooleanoEstilo]="element.activo">{{ element.activo | booleanoATexto: 'Sí': 'No' }}</td>
   </ng-container>
 
   <!-- Columna de Aciones -->

@@ -16,6 +16,7 @@ import { ValidacionComponent } from './components/validacion/validacion.componen
 
 import { FormatoEdadPipe } from './pipes/formato-edad.pipe';
 import { BooleanoATextoPipe } from './pipes/booleano-a-texto.pipe';
+import { BooleanoEstiloDirective } from './directives/booleano-estilo.directive';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { BooleanoATextoPipe } from './pipes/booleano-a-texto.pipe';
     FormatoEdadPipe,
     BooleanoATextoPipe,
     ValidacionComponent,
+    BooleanoEstiloDirective,
   ],
   imports: [
     BrowserModule,
