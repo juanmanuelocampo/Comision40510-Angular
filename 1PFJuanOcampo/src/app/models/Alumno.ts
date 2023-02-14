@@ -3,5 +3,6 @@ export interface Alumno{
     nombre:string,
     apellido:string,
     email:string,
-    fecnac: Date
+    fecnac: Date,
+    activo: boolean,
 }

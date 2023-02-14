@@ -15,6 +15,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { ValidacionComponent } from './components/validacion/validacion.component';
 
 import { FormatoEdadPipe } from './pipes/formato-edad.pipe';
+import { BooleanoATextoPipe } from './pipes/booleano-a-texto.pipe';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { FormatoEdadPipe } from './pipes/formato-edad.pipe';
     ContentComponent,
     SidenavComponent,
     FormatoEdadPipe,
+    BooleanoATextoPipe,
     ValidacionComponent,
   ],
   imports: [

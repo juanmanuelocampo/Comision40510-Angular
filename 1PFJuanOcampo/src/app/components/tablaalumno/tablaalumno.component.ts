@@ -16,7 +16,7 @@ export class TablaalumnoComponent {
   estadoventana: string = 'consulta';
   alumnos$!: Observable<Array<Alumno>>;
   dataSource!: MatTableDataSource<Alumno>;
-  columnas: Array<string> = ['id', 'nombre', 'apellido', 'email', 'fecnac', 'edad', 'acciones'];
+  columnas: Array<string> = ['id', 'nombre', 'apellido', 'email', 'fecnac', 'edad', 'activo', 'acciones'];
 
   constructor(
       private dialog: MatDialog,
