@@ -12,7 +12,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatFormFieldModule} from '@angular/material/form-field';
 
-
 //////////
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatNativeDateModule} from '@angular/material/core';
@@ -21,7 +20,6 @@ import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
-  declarations: [],
   imports: [
     CommonModule,
     MatTableModule,
@@ -50,6 +48,7 @@ import {HttpClientModule} from '@angular/common/http';
     BrowserAnimationsModule,
     FormsModule, ReactiveFormsModule, MatNativeDateModule, HttpClientModule,
     MatFormFieldModule,
+
   ],
 })
 export class MaterialModule { }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { Alumno } from 'src/app/models/Alumno';
 import { AlumnoService } from 'src/app/services/alumno.service';
@@ -21,6 +22,7 @@ export class TablaalumnoComponent {
   constructor(
       private dialog: MatDialog,
       private alumnoService: AlumnoService,
+      private router: Router,
   ){}
 
   ngOnInit(): void {
@@ -46,6 +48,9 @@ export class TablaalumnoComponent {
     this.estadoventana = 'alta';
     let alumno:Alumno = this.alumnoService.nuevoAlumno;
     this.abrirModal(alumno);
+  }
+  redirigirEstadisticas(alumno: Alumno){
+    this.router.navigate(['alumno/estadisticas/' + alumno.id]);
   }
 
   abrirModal(alumno: Alumno){

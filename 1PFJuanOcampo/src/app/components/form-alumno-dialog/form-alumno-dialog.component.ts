@@ -8,7 +8,7 @@ import { AlumnoService } from 'src/app/services/alumno.service';
   templateUrl: './form-alumno-dialog.component.html',
   styleUrls: ['./form-alumno-dialog.component.css']
 })
-export class FormAlumnoDialogComponent  implements OnInit {
+export class FormAlumnoDialogComponent implements OnInit {
     formulario: FormGroup;
     tituloVentana: string = 'Formulario de Alumno ' + ((this.data.estadoventana === 'edicion')?'(Edición)':'(Alta)');
 

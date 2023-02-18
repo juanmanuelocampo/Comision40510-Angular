@@ -2,23 +2,27 @@
   <mat-sidenav #drawer class="example-sidenav" mode="side" [mode]="'over'">
     <mat-nav-list>
       <mat-list-item class="parent">
+        <!-- <mat-icon mat-list-icon>account_circle</mat-icon> -->
+        <a (click)="redirigirInicio()"><span class="full-width">Inicio</span></a>
+      </mat-list-item>
+      <mat-list-item class="parent">
         <span class="full-width">Usuarios</span>
         <!-- <mat-icon mat-list-icon>account_circle</mat-icon> -->
       </mat-list-item>
       <mat-list-item class="parent">
-        <span class="full-width">Alumnos</span>
+        <a routerLink="alumno/tabla" (click)="drawer.toggle()"><span class="full-width">Alumnos</span></a>
         <!-- <mat-icon mat-list-icon>account_circle</mat-icon> -->
       </mat-list-item>
       <mat-list-item class="parent">
-        <span class="full-width">Profesores</span>
+        <a><span class="full-width">Profesores</span></a>
         <!-- <mat-icon mat-list-icon>account_circle</mat-icon> -->
       </mat-list-item>
       <mat-list-item class="parent">
-        <span class="full-width">Cursos</span>
+        <a><span class="full-width">Cursos</span></a>
         <!-- <mat-icon mat-list-icon>account_circle</mat-icon> -->
       </mat-list-item>
       <mat-list-item class="parent">
-        <span class="full-width">Inscripciones</span>
+        <a><span class="full-width">Inscripciones</span></a>
         <!-- <mat-icon mat-list-icon>account_circle</mat-icon> -->
       </mat-list-item>
     </mat-nav-list>

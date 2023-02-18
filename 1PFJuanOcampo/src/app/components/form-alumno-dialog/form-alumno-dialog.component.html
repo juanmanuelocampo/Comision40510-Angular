@@ -19,7 +19,7 @@
       <div class="form-group">
         <label for="apellido">Apellido</label>
         <input type="text" formControlName="apellido" class="form-control" placeholder="Apellido">
-        <app-validacion
+         <app-validacion
           [ExisteError]="formulario.controls['apellido'].invalid"
           [valrequerido]="formulario.controls['apellido'].dirty && formulario.controls['apellido'].errors?.['required']">
         </app-validacion>
@@ -27,7 +27,7 @@
       <div class="form-group">
         <label for="email">E-Mail</label>
         <input type="text" formControlName="email" class="form-control" placeholder="E-Mail">
-        <app-validacion
+         <app-validacion
           [ExisteError]="formulario.controls['email'].invalid"
           [valemail]="formulario.controls['email'].dirty && formulario.controls['email'].errors?.['email']">
         </app-validacion>
@@ -35,7 +35,7 @@
       <div class="form-group">
         <label for="fecnac">Nacimiento</label>
         <input type="text" formControlName="fecnac" class="form-control" placeholder="Nacimiento">
-        <app-validacion
+         <app-validacion
           [ExisteError]="formulario.controls['fecnac'].invalid"
           [valrequerido]="formulario.controls['fecnac'].dirty && formulario.controls['fecnac'].errors?.['required']">
         </app-validacion>
