@@ -48,7 +48,6 @@ import {HttpClientModule} from '@angular/common/http';
     BrowserAnimationsModule,
     FormsModule, ReactiveFormsModule, MatNativeDateModule, HttpClientModule,
     MatFormFieldModule,
-
   ],
 })
 export class MaterialModule { }
