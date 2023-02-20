@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
+import { SidenavService } from '../sidenav/sidenav.service';
 
 @Component({
   selector: 'app-header',
@@ -6,4 +8,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  @ViewChild('sidenav') public sidenav!: MatSidenav;
+
+  constructor(private sidenavService: SidenavService){
+  }
+
+  toggleMenu(){
+    this.sidenavService.toggle();
+  }
 }

@@ -14,6 +14,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { AlumnosModule } from './alumnos/alumnos.module';
 import { ProfesoresModule } from './profesores/profesores.module';
 import { CursosModule } from './cursos/cursos.module';
+import { SidenavService } from './sidenav/sidenav.service';
 
 @NgModule({
     declarations: [
@@ -25,7 +26,7 @@ import { CursosModule } from './cursos/cursos.module';
         InicioComponent,
         PaginaNoEncontradaComponent,
     ],
-    providers: [],
+    providers: [SidenavService],
     bootstrap: [AppComponent],
     imports: [
         BrowserModule,

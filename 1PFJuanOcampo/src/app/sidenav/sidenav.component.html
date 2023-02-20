@@ -1,5 +1,5 @@
 <mat-sidenav-container class="example-container" autosize >
-  <mat-sidenav #drawer class="example-sidenav" mode="side" [mode]="'over'">
+  <mat-sidenav #sidenav class="example-sidenav" mode="side" [mode]="'over'">
     <mat-nav-list>
       <mat-list-item class="parent">
         <!-- <mat-icon mat-list-icon>account_circle</mat-icon> -->
@@ -10,15 +10,15 @@
         <!-- <mat-icon mat-list-icon>account_circle</mat-icon> -->
       </mat-list-item>
       <mat-list-item class="parent">
-        <a routerLink="alumno/tabla" (click)="drawer.toggle()"><span class="full-width">Alumnos</span></a>
+        <a routerLink="alumno/tabla" (click)="sidenav.toggle()"><span class="full-width">Alumnos</span></a>
         <!-- <mat-icon mat-list-icon>account_circle</mat-icon> -->
       </mat-list-item>
       <mat-list-item class="parent">
-        <a routerLink="profesor/tabla" (click)="drawer.toggle()"><span class="full-width">Profesores</span></a>
+        <a routerLink="profesor/tabla" (click)="sidenav.toggle()"><span class="full-width">Profesores</span></a>
         <!-- <mat-icon mat-list-icon>account_circle</mat-icon> -->
       </mat-list-item>
       <mat-list-item class="parent">
-        <a routerLink="curso/tabla" (click)="drawer.toggle()"><span class="full-width">Cursos</span></a>
+        <a routerLink="curso/tabla" (click)="sidenav.toggle()"><span class="full-width">Cursos</span></a>
         <!-- <mat-icon mat-list-icon>account_circle</mat-icon> -->
       </mat-list-item>
       <mat-list-item class="parent">
@@ -29,8 +29,7 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-      <app-content></app-content> <!-- Formulario de alumno -->
-      <button mat-flat-button color="warn" (click)="drawer.toggle()">Abrir Menú</button>
+      <app-content></app-content> <!-- Ventanas -->
   </mat-sidenav-content>
 
 
