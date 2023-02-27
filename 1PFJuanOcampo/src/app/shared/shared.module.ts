@@ -5,7 +5,8 @@ import { DirectivesModule } from './directives/directives.module';
 import { PipesModule } from './pipes/pipes.module';
 
 import { ValidacionComponent } from './components/validacion/validacion.component';
-import * as CanvasJSAngularChart from './../../assets/canvasjs.angular.component';
+import * as CanvasJSAngularChart from './components/stats/canvasjs.angular.component';
+import { CommonModule } from '@angular/common';
 var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
 
 
@@ -15,12 +16,14 @@ var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
     ValidacionComponent,
   ],
   imports: [
+    CommonModule,
     PipesModule,
     ReactiveFormsModule,
     DirectivesModule,
     MaterialModule,
   ],
   exports: [
+    CommonModule,
     PipesModule,
     ReactiveFormsModule,
     DirectivesModule,

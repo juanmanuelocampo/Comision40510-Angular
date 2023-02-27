@@ -1,4 +1,5 @@
 <mat-sidenav-container class="example-container" autosize >
+
   <mat-sidenav #sidenav class="example-sidenav" mode="side" [mode]="'over'">
     <mat-nav-list>
       <mat-list-item class="parent">
@@ -25,11 +26,14 @@
         <a><span class="full-width">Inscripciones</span></a>
         <!-- <mat-icon mat-list-icon>account_circle</mat-icon> -->
       </mat-list-item>
+      <mat-list-item class="parent">
+          <a routerLink="curso/tabla" (click)="cerrarSesion()"><span class="full-width">Cerrar sesión</span></a>
+      </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
 
   <mat-sidenav-content>
-      <app-content></app-content> <!-- Ventanas -->
+      <router-outlet></router-outlet>
   </mat-sidenav-content>
 
 

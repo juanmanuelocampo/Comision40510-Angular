@@ -6,6 +6,8 @@ import { Observable, Subscription } from 'rxjs';
 import { Profesor } from 'src/app/models/Profesor';
 import { FormProfesorDialogComponent } from '../form-profesor-dialog/form-profesor-dialog.component';
 import { ProfesorService } from '../../services/profesor.service';
+import { SesionService } from 'src/app/core/services/sesion.service';
+import { Sesion } from 'src/app/models/sesion';
 
 @Component({
   selector: 'app-tablaprofesor',
@@ -18,11 +20,13 @@ export class TablaprofesorComponent {
   profesores$!: Observable<Array<Profesor>>;
   dataSource!: MatTableDataSource<Profesor>;
   columnas: Array<string> = ['id', 'nombre', 'apellido', 'email', 'fecnac', 'edad', 'activo', 'acciones'];
+  sesion$!: Observable<Sesion>;
 
   constructor(
       private dialog: MatDialog,
       private profesorService: ProfesorService,
       private router: Router,
+      private sesionService: SesionService,
   ){}
 
   ngOnInit(): void {
@@ -32,6 +36,7 @@ export class TablaprofesorComponent {
     this.suscripcion = this.profesorService.obtenerProfesoresObservable().subscribe((profesores: Array<Profesor>) => {
       this.dataSource.data = profesores;
     });
+    this.sesion$ = this.sesionService.obtenerSesion();
   }
   ngOnDestroy(){
     this.suscripcion.unsubscribe();

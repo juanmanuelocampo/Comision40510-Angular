@@ -3,7 +3,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
+import { SesionService } from 'src/app/core/services/sesion.service';
 import { Curso } from 'src/app/models/Curso';
+import { Sesion } from 'src/app/models/sesion';
 import { CursoService } from '../../services/curso.service';
 import { FormCursoDialogComponent } from '../form-curso-dialog/form-curso-dialog.component';
 
@@ -18,11 +20,13 @@ export class TablaCursoComponent {
   cursos$!: Observable<Array<Curso>>;
   dataSource!: MatTableDataSource<Curso>;
   columnas: Array<string> = ['id', 'nombre', 'acciones'];
+  sesion$!: Observable<Sesion>;
 
   constructor(
       private dialog: MatDialog,
       private cursoService: CursoService,
       private router: Router,
+      private sesionService: SesionService,
   ){}
 
   ngOnInit(): void {
@@ -32,6 +36,7 @@ export class TablaCursoComponent {
     this.suscripcion = this.cursoService.obtenerCursosObservable().subscribe((cursos: Array<Curso>) => {
       this.dataSource.data = cursos;
     });
+    this.sesion$ = this.sesionService.obtenerSesion();
   }
   ngOnDestroy(){
     this.suscripcion.unsubscribe();

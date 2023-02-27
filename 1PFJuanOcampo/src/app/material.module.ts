@@ -8,14 +8,16 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//import { BrowserModule } from '@angular/platform-browser';
+//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatInputModule } from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 
 //////////
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatNativeDateModule} from '@angular/material/core';
 import {HttpClientModule} from '@angular/common/http';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 
@@ -30,10 +32,12 @@ import {HttpClientModule} from '@angular/common/http';
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
-    BrowserModule,
-    BrowserAnimationsModule,
+    //BrowserModule,
+    //BrowserAnimationsModule,
     FormsModule, ReactiveFormsModule, MatNativeDateModule, HttpClientModule,
+    MatInputModule,
     MatFormFieldModule,
+    MatSlideToggleModule,
   ],
   exports: [
     MatTableModule,
@@ -44,10 +48,12 @@ import {HttpClientModule} from '@angular/common/http';
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
-    BrowserModule,
-    BrowserAnimationsModule,
+    //BrowserModule,
+    //BrowserAnimationsModule,
     FormsModule, ReactiveFormsModule, MatNativeDateModule, HttpClientModule,
+    MatInputModule,
     MatFormFieldModule,
+    MatSlideToggleModule,
   ],
 })
 export class MaterialModule { }

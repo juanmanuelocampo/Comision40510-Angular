@@ -7,24 +7,22 @@ import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { InicioComponent } from './inicio/inicio.component';
 import { PaginaNoEncontradaComponent } from './pagina-no-encontrada/pagina-no-encontrada.component';
-import { ContentComponent } from './content/content.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
-import { AlumnosModule } from './alumnos/alumnos.module';
-import { ProfesoresModule } from './profesores/profesores.module';
-import { CursosModule } from './cursos/cursos.module';
 import { SidenavService } from './sidenav/sidenav.service';
+import { LayoutLoggedComponent } from './layout-logged/layout-logged.component';
+import { LayoutNotLoggedComponent } from './layout-not-logged/layout-not-logged.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         FooterComponent,
         HeaderComponent,
-        ContentComponent,
         SidenavComponent,
-        InicioComponent,
         PaginaNoEncontradaComponent,
+        LayoutLoggedComponent,
+        LayoutNotLoggedComponent,
     ],
     providers: [SidenavService],
     bootstrap: [AppComponent],
@@ -33,11 +31,8 @@ import { SidenavService } from './sidenav/sidenav.service';
         BrowserAnimationsModule,
         SharedModule,
         CoreModule,
-        AlumnosModule,
-        ProfesoresModule,
-        CursosModule,
         AppRoutingModule,
     ]
 })
 export class AppModule {
- }
+}
