@@ -2,32 +2,32 @@
 
   <mat-sidenav #sidenav class="example-sidenav" mode="side" [mode]="'over'">
     <mat-nav-list>
-      <mat-list-item class="parent">
+      <mat-list-item>
         <!-- <mat-icon mat-list-icon>account_circle</mat-icon> -->
         <a (click)="redirigirInicio()"><span class="full-width">Inicio</span></a>
       </mat-list-item>
-      <mat-list-item class="parent">
+      <mat-list-item>
         <span class="full-width">Usuarios</span>
         <!-- <mat-icon mat-list-icon>account_circle</mat-icon> -->
       </mat-list-item>
-      <mat-list-item class="parent">
-        <a routerLink="alumno/tabla" (click)="sidenav.toggle()"><span class="full-width">Alumnos</span></a>
+      <mat-list-item>
+        <a routerLink="alumno/tabla" matListItemTitle (click)="sidenav.toggle()"><span class="full-width">Alumnos</span></a>
         <!-- <mat-icon mat-list-icon>account_circle</mat-icon> -->
       </mat-list-item>
-      <mat-list-item class="parent">
-        <a routerLink="profesor/tabla" (click)="sidenav.toggle()"><span class="full-width">Profesores</span></a>
+      <mat-list-item>
+        <a routerLink="profesor/tabla" matListItemTitle (click)="sidenav.toggle()"><span class="full-width">Profesores</span></a>
         <!-- <mat-icon mat-list-icon>account_circle</mat-icon> -->
       </mat-list-item>
-      <mat-list-item class="parent">
-        <a routerLink="curso/tabla" (click)="sidenav.toggle()"><span class="full-width">Cursos</span></a>
+      <mat-list-item>
+        <a routerLink="curso/tabla" matListItemTitle (click)="sidenav.toggle()"><span class="full-width">Cursos</span></a>
         <!-- <mat-icon mat-list-icon>account_circle</mat-icon> -->
       </mat-list-item>
-      <mat-list-item class="parent">
+      <mat-list-item>
         <a><span class="full-width">Inscripciones</span></a>
         <!-- <mat-icon mat-list-icon>account_circle</mat-icon> -->
       </mat-list-item>
-      <mat-list-item class="parent">
-          <a routerLink="curso/tabla" (click)="cerrarSesion()"><span class="full-width">Cerrar sesión</span></a>
+      <mat-list-item>
+          <a routerLink="curso/tabla" matListItemTitle (click)="cerrarSesion()"><span class="full-width">Cerrar sesión</span></a>
       </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>

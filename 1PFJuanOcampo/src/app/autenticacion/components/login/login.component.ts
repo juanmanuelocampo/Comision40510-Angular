@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     this.formulario = new FormGroup({
       usuario: new FormControl(),
       contrasena: new FormControl(),
-      esAdmin: new FormControl(false)
+      esAdmin: new FormControl(true)
     });
   }
 

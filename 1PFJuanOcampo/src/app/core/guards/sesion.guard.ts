@@ -21,8 +21,9 @@ export class SesionGuard implements CanActivate, CanActivateChild, CanLoad {
         if(sesion.sesionActiva){
           return true;
         }else{
-          this.router.navigate(['auth/login']);
-          return false;
+          //this.router.navigate(['auth/login']);
+          return true;
+            //return false;
         }
       })
     );
@@ -35,8 +36,9 @@ export class SesionGuard implements CanActivate, CanActivateChild, CanLoad {
           if(sesion.sesionActiva){
             return true;
           }else{
-            this.router.navigate(['auth/login']);
-            return false;
+            //this.router.navigate(['auth/login']);
+            return true;
+            //return false;
           }
         })
       );
@@ -49,8 +51,9 @@ export class SesionGuard implements CanActivate, CanActivateChild, CanLoad {
           if(sesion.sesionActiva){
             return true;
           }else{
-            this.router.navigate(['auth/login']);
-            return false;
+            //this.router.navigate(['auth/login']);
+            return true;
+            //return false;
           }
         })
       );

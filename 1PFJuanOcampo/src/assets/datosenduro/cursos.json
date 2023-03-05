@@ -1,0 +1,50 @@
+[
+  {
+   "nombre": "Non Music",
+   "id": "1"
+  },
+  {
+   "nombre": "Stage And Screen",
+   "id": "2"
+  },
+  {
+   "nombre": "Metal",
+   "id": "3"
+  },
+  {
+   "nombre": "Folk",
+   "id": "4"
+  },
+  {
+   "nombre": "Blues",
+   "id": "5"
+  },
+  {
+   "nombre": "Soul",
+   "id": "6"
+  },
+  {
+   "nombre": "Soul",
+   "id": "7"
+  },
+  {
+   "nombre": "Rock",
+   "id": "8"
+  },
+  {
+   "nombre": "Electronic",
+   "id": "9"
+  },
+  {
+   "nombre": "Hip Hop",
+   "id": "10"
+  },
+  {
+   "nombre": "Funk",
+   "id": "11"
+  },
+  {
+   "nombre": "Hip Hop",
+   "id": "12"
+  }
+ ]

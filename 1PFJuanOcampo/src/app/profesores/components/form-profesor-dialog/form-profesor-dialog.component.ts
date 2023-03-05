@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Profesor } from 'src/app/models/Profesor';
 import { ProfesorService } from '../../services/profesor.service';
 
 @Component({
@@ -23,6 +24,7 @@ export class FormProfesorDialogComponent implements OnInit {
         apellido: new FormControl((this.data.estadoventana === 'edicion')?data.apellido: '', Validators.required),
         email: new FormControl((this.data.estadoventana === 'edicion')?data.email: '', Validators.email),
         fecnac: new FormControl((this.data.estadoventana === 'edicion')?data.fecnac: '', Validators.required),
+        activo: new FormControl((this.data.estadoventana === 'edicion')?data.activo: ''),
       })
     }
     ngOnInit(): void {
@@ -32,10 +34,14 @@ export class FormProfesorDialogComponent implements OnInit {
       ((this.data.estadoventana === 'edicion')?this.editarProfesorDesdeComponenteABM():this.agregarProfesorDesdeComponenteABM());
     }
     agregarProfesorDesdeComponenteABM(){
-        this.profesorService.agregarProfesor(this.formulario.value);
+      this.profesorService.agregarProfesor(this.formulario.value).subscribe((profesor: Profesor) => {
+        alert(`${profesor.nombre} agregado correctamente.`);
+      });
     }
     editarProfesorDesdeComponenteABM(){
-      this.profesorService.editarProfesor(this.formulario.value);
+      this.profesorService.editarProfesor(this.formulario.value).subscribe((profesor: Profesor) => {
+        alert(`${profesor.nombre} editado correctamente.`);
+      });
     }
     cerrarModal(): void {
       this.dialogRef.close();

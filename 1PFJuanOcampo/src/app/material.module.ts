@@ -11,6 +11,7 @@ import { MatListModule } from '@angular/material/list';
 //import { BrowserModule } from '@angular/platform-browser';
 //import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
 
 //////////
@@ -36,6 +37,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     //BrowserAnimationsModule,
     FormsModule, ReactiveFormsModule, MatNativeDateModule, HttpClientModule,
     MatInputModule,
+    MatDatepickerModule,
     MatFormFieldModule,
     MatSlideToggleModule,
   ],
@@ -52,6 +54,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     //BrowserAnimationsModule,
     FormsModule, ReactiveFormsModule, MatNativeDateModule, HttpClientModule,
     MatInputModule,
+    MatDatepickerModule,
     MatFormFieldModule,
     MatSlideToggleModule,
   ],

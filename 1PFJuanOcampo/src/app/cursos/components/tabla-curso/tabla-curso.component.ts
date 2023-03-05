@@ -31,9 +31,9 @@ export class TablaCursoComponent {
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource<Curso>();
-    this.cursos$ = this.cursoService.obtenerCursosObservable();
+    this.cursos$ = this.cursoService.obtenerCursosAPI(); //.obtenerCursosObservable();
     //Subscribo al origen de datos
-    this.suscripcion = this.cursoService.obtenerCursosObservable().subscribe((cursos: Array<Curso>) => {
+    this.suscripcion = this.cursoService.obtenerCursosAPI().subscribe((cursos: Array<Curso>) => {//obtenerCursosObservable().subscribe((cursos: Array<Curso>) => {
       this.dataSource.data = cursos;
     });
     this.sesion$ = this.sesionService.obtenerSesion();

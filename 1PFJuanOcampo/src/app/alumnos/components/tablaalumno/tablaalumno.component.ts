@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
@@ -14,7 +14,7 @@ import { FormAlumnoDialogComponent } from '../form-alumno-dialog/form-alumno-dia
   templateUrl: './tablaalumno.component.html',
   styleUrls: ['./tablaalumno.component.css']
 })
-export class TablaalumnoComponent {
+export class TablaalumnoComponent implements OnInit, OnDestroy{
   suscripcion!: Subscription;
   estadoventana: string = 'consulta';
   alumnos$!: Observable<Array<Alumno>>;
@@ -31,19 +31,18 @@ export class TablaalumnoComponent {
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource<Alumno>();
-    this.alumnos$ = this.alumnoService.obtenerAlumnosObservable();
+    this.alumnos$ = this.alumnoService.obtenerAlumnosAPI();//obtenerAlumnosObservable();
     this.sesion$ = this.sesionService.obtenerSesion();
     //Subscribo al origen de datos
-    this.suscripcion = this.alumnoService.obtenerAlumnosObservable().subscribe((alumnos: Array<Alumno>) => {
+    this.suscripcion = this.alumnoService.obtenerAlumnosAPI().subscribe((alumnos: Alumno[]) => {//obtenerAlumnosObservable().subscribe((alumnos: Array<Alumno>) => {
       this.dataSource.data = alumnos;
     });
   }
-  ngOnDestroy(){
-    this.suscripcion.unsubscribe();
-  }
-
   eliminar(alumno:Alumno){
-    this.alumnoService.eliminarAlumno(alumno);
+    this.alumnoService.eliminarAlumno(alumno).subscribe((alumno: Alumno) => {
+      alert(`${alumno.nombre} eliminado correctamente.`);
+      this.alumnoService.obtenerAlumnosAPI().subscribe(alumnos => { this.dataSource.data = alumnos})
+    });
   }
   modoEdicion(alumno:Alumno){
     this.estadoventana = 'edicion';
@@ -58,13 +57,18 @@ export class TablaalumnoComponent {
     //Si bien envío el id y el objeto completo. Se deberían enviar solo una u otra
     this.router.navigate(['alumno/estadisticas/' + alumno.id, alumno]);
   }
-
   abrirModal(alumno: Alumno){
     const dialogRef = this.dialog.open(FormAlumnoDialogComponent, {
       data: {...alumno, estadoventana:this.estadoventana} //Revisar tutor: es una buena práctica la forma en que envío el estadoventana?
     });
+    //esto se ejecuta al cerrar la modal
     dialogRef.afterClosed().subscribe(alumno => {
-      //esto se ejecuta al cerrar la modal
+      //No me gusta esta forma de actualizar la tabla, pero no encuentro otra
+      this.alumnoService.obtenerAlumnosAPI().subscribe(alumnos => { this.dataSource.data = alumnos})
     });
+  }
+
+  ngOnDestroy(){
+    this.suscripcion.unsubscribe();
   }
 }

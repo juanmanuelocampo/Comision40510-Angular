@@ -1,6 +1,4 @@
 <div class="container">
-  <button mat-raised-button (click)="agregarAlumnoDesdeComponenteABM()">Agregar Alumno al servicio desde ABM</button>
-
   <h1 mat-dialog-header align="center"><b>{{tituloVentana}}</b></h1>
   <hr>
   <form [formGroup]="formulario">
@@ -32,13 +30,17 @@
           [valemail]="formulario.controls['email'].dirty && formulario.controls['email'].errors?.['email']">
         </app-validacion>
       </div>
-      <div class="form-group">
+
+      <mat-form-field class="form-group">
         <label for="fecnac">Nacimiento</label>
-        <input type="text" formControlName="fecnac" class="form-control" placeholder="Nacimiento">
-        <app-validacion
-          [ExisteError]="formulario.controls['fecnac'].invalid"
-          [valrequerido]="formulario.controls['fecnac'].dirty && formulario.controls['fecnac'].errors?.['required']">
-        </app-validacion>
+        <input matInput [matDatepicker]="fecnac" formControlName="fecnac">
+        <mat-datepicker-toggle matSuffix [for]="fecnac"></mat-datepicker-toggle>
+        <mat-datepicker #fecnac></mat-datepicker>
+      </mat-form-field>
+
+      <div class="form-group">
+        <label for="fecnac">Activo</label>
+        <mat-slide-toggle formControlName="activo" class="form-control"></mat-slide-toggle>
       </div>
   </form>
 
