@@ -1,24 +1,31 @@
-<h1>Iniciar Sesión</h1>
+<div class="container">
+  <h1 align="center" class="mt-2"><b>Inicio de Sesión</b></h1>
+    <h2 text-color="primary">[admin - admin para usuario administrador / user - user para usuario común]</h2>
 
-<form [formGroup]="formulario" (ngSubmit)="login()">
-    <div class="row">
-        <div class="col-md-4">
-            <mat-form-field appearance="outline" class="fill">
-                <mat-label>Usuario</mat-label>
-                <input matInput type="text" formControlName="usuario">
-            </mat-form-field>
-        </div>
-        <div class="col-md-4">
-            <mat-form-field appearance="outline" class="fill">
-                <mat-label>Contraseña</mat-label>
-                <input matInput type="text" formControlName="contrasena">
-            </mat-form-field>
-        </div>
-        <div class="col-md-2">
-            <mat-slide-toggle formControlName="esAdmin">Es admin</mat-slide-toggle>
-        </div>
-        <div class="col-md-2">
-            <button type="submit" mat-raised-button color="primary">Login</button>
-        </div>
-    </div>
-</form>
+    <form [formGroup]="formulario" (ngSubmit)="login()">
+      <div class="form-group" class="w-25">
+        <label for="usuario">Usuario</label>
+        <input matInput type="text" formControlName="usuario" class="form-control" placeholder="Usuario">
+      </div>
+
+      <div class="form-group" class="w-25">
+          <label for="usuario">Contraseña</label>
+          <input matInput type="password" formControlName="contrasena" class="form-control" placeholder="Contraseña">
+      </div>
+
+      <div class="form-group" class="w-25">
+        <label for="usuario">Es administrador (este valor se asigna autom. Por lo tanto, lo deshabilito.)</label>
+        <mat-slide-toggle formControlName="esAdmin" class="form-control"></mat-slide-toggle>
+      </div>
+
+      <div class="form-group mt-2">
+        <button mat-flat-button type="submit" color="primary">LogIn</button>
+      </div>
+    </form>
+
+
+
+
+
+</div>
+
