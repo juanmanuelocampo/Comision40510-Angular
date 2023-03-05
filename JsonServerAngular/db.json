@@ -1,0 +1,34 @@
+{
+  "alumno": [
+    {
+      "nombre": "Jermey",
+      "apellido": "Larkin",
+      "email": "Tyree_Monahan@yahoo.com",
+      "fecnac": 1677693103,
+      "activo": true,
+      "id": 1
+    },
+    {
+      "nombre": "Jermey",
+      "apellido": "Larkin",
+      "email": "Tyree_Monahan@yahoo.com",
+      "fecnac": 1677693103,
+      "activo": true,
+      "id": 2
+    }
+  ],
+  "profesor": [
+    {
+      "nombre": "Jermey",
+      "apellido": "Larkin",
+      "email": "Tyree_Monahan@yahoo.com",
+      "fecnac": 1677693103,
+      "activo": true,
+      "id": 1
+    }
+  ],
+  "curso": {
+    "id": 1,
+    "nombre": "Angular"
+  }
+}
