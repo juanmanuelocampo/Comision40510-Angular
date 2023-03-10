@@ -20,4 +20,9 @@ export class LoginService {
 
     this.sesion.crearSesion(sesion);
   }
+
+  getSesion(){
+    return this.sesion.obtenerSesion();
+  };
+
 }

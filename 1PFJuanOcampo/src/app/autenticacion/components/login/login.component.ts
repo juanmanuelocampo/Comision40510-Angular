@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/models/Usuario';
 import { LoginService } from '../../services/login.service';
@@ -12,16 +12,19 @@ import Swal from'sweetalert2';
 })
 export class LoginComponent implements OnInit {
   formulario!: FormGroup;
+  mostrarUsuarioContrasena: Boolean = true;
+  sesionIniciada: Boolean = false;
 
   constructor(
-    private loginService: LoginService,
+
+    public loginService: LoginService,
     private router: Router
   ){}
 
   ngOnInit(): void {
     this.formulario = new FormGroup({
-      usuario: new FormControl('admin'),
-      contrasena: new FormControl('admin'),
+      usuario: new FormControl('admin', Validators.required),
+      contrasena: new FormControl('admin', Validators.required),
       esAdmin: new FormControl({value: true, disabled: true})
     });
   }
@@ -29,6 +32,7 @@ export class LoginComponent implements OnInit {
   login(){
     let mensaje = '';
     if((this.formulario.value.usuario == 'admin' && this.formulario.value.contrasena == 'admin') || (this.formulario.value.usuario == 'user' && this.formulario.value.contrasena == 'user')){
+      this.sesionIniciada = true;
       if (this.formulario.value.usuario == 'admin'){
         mensaje = 'Atención: La sesión se iniciará con permisos de ADMINISTRADOR.';
       }else{
@@ -51,6 +55,7 @@ export class LoginComponent implements OnInit {
         //if (result.isConfirmed) alert('puede seguir')
       })
     }else{
+      this.sesionIniciada = false;
       Swal.fire({
         title: 'Inicio de sesión',
         text: 'Atención: Usuario o contraseña incorrectos',

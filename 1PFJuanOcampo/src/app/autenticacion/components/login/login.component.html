@@ -1,6 +1,6 @@
 <div class="container">
   <h1 align="center" class="mt-2"><b>Inicio de Sesión</b></h1>
-    <h2 text-color="primary">[admin - admin para usuario administrador / user - user para usuario común]</h2>
+    <h2 *ngIf="mostrarUsuarioContrasena" text-color="primary">[admin - admin para usuario administrador / user - user para usuario común]</h2>
 
     <form [formGroup]="formulario" (ngSubmit)="login()">
       <div class="form-group" class="w-25">
@@ -19,7 +19,7 @@
       </div>
 
       <div class="form-group mt-2">
-        <button mat-flat-button type="submit" color="primary">LogIn</button>
+        <button id="btn-login" mat-flat-button type="submit" color="primary" [disabled]="formulario.invalid">LogIn</button>
       </div>
     </form>
 
