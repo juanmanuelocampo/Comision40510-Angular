@@ -3,11 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-estadisticas-curso',
-  templateUrl: './estadisticas-curso.component.html',
-  styleUrls: ['./estadisticas-curso.component.css']
+  selector: 'app-historial-curso',
+  templateUrl: './historial-curso.component.html',
+  styleUrls: ['./historial-curso.component.css']
 })
-export class EstadisticasCursoComponent {
+export class HistorialCursoComponent {
     columnChartOptions = {
       animationEnabled: true,
       title: {
@@ -16,18 +16,21 @@ export class EstadisticasCursoComponent {
       data: [
       {
           // Change type to "doughnut", "line", "splineArea", etc.
-          type: 'doughnut',
+          type: 'line',
           dataPoints: [
-            { label: 'Aprobados', y: 90 },
-            { label: 'Desaprobados', y: 10 },
+            { label: 'C#', y: 9 },
+            { label: 'C++', y: 8 },
+            { label: 'Java', y: 6 },
+            { label: 'Angular', y: 6 },
+            { label: 'React', y: 7 },
           ],
       },
       ],
-    };
+  };
 
   constructor(private route: ActivatedRoute, private location: Location){
     this.route.params.subscribe(params => {
-      this.columnChartOptions.title.text = "Estadísticas del Curso " + params['nombre'];
+      this.columnChartOptions.title.text = "Historial del curso " + params['nombre'] + ' ' + params['apellido'];
     });
   }
 

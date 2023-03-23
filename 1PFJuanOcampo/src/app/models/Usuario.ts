@@ -1,5 +1,6 @@
 export interface Usuario{
-  usuario: number;
-  contrasena: string;
-  esAdmin: boolean;
+  id: number,
+  usuario: string,
+  contrasena: string,
+  esAdmin: boolean
 }

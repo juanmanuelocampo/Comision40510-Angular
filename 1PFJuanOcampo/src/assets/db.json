@@ -1,0 +1,64 @@
+{
+  "usuario": [
+    {
+      "id": 1,
+      "usuario": "usuario",
+      "contrasena": "usuario",
+      "esAdmin": false
+    },
+    {
+      "id": "2",
+      "usuario": "admin",
+      "contrasena": "admin",
+      "esAdmin": true
+    }
+  ],
+  "inscripcion": [
+    {
+      "id": "1",
+      "nombre": "Angular"
+    }
+  ],
+  "curso": [
+    {
+      "id": "1",
+      "nombre": "Angular"
+    }
+  ],
+  "alumno": [
+    {
+      "id": "1",
+      "nombre": "Jermey",
+      "apellido": "Larkin",
+      "email": "Tyree_Monahan@yahoo.com",
+      "fecnac": "2023-03-21T03:00:00.000Z",
+      "activo": true
+    },
+    {
+      "id": "2",
+      "nombre": "alumno1",
+      "apellido": "alumno1",
+      "email": "alumno1@alumno1.com",
+      "fecnac": 1677693103,
+      "activo": true
+    }
+  ],
+  "profesor": [
+    {
+      "id": "1",
+      "nombre": "Profesora",
+      "apellido": "Profesor",
+      "email": "Profesor@Profesor",
+      "fecnac": "2023-03-21T03:00:00.000Z",
+      "activo": false
+    },
+    {
+      "id": "2",
+      "nombre": "2",
+      "apellido": "2",
+      "email": "2@2",
+      "fecnac": "2023-03-21T03:00:00.000Z",
+      "activo": ""
+    }
+  ]
+}

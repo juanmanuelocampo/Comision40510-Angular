@@ -19,6 +19,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatNativeDateModule} from '@angular/material/core';
 import {HttpClientModule} from '@angular/common/http';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 
@@ -40,6 +41,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatDatepickerModule,
     MatFormFieldModule,
     MatSlideToggleModule,
+    MatProgressSpinnerModule,
   ],
   exports: [
     MatTableModule,
@@ -57,6 +59,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatDatepickerModule,
     MatFormFieldModule,
     MatSlideToggleModule,
+    MatProgressSpinnerModule,
   ],
 })
 export class MaterialModule { }

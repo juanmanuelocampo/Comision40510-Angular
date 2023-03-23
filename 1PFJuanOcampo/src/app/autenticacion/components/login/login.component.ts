@@ -45,12 +45,13 @@ export class LoginComponent implements OnInit {
         confirmButtonColor: '#3085d6',
         confirmButtonText: 'Aceptar'
       }).then((result) => {
-        let usuario: Usuario = {
+        let _usuario: Usuario = {
+          id: 1,
           usuario: this.formulario.value.usuario,
           contrasena: this.formulario.value.contrasena,
           esAdmin: (this.formulario.value.usuario == 'admin')
         }
-        this.loginService.login(usuario);
+        this.loginService.login(_usuario);
         this.router.navigate(['inicio']);
         //if (result.isConfirmed) alert('puede seguir')
       })

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,6 +13,9 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { SidenavService } from './sidenav/sidenav.service';
 import { LayoutLoggedComponent } from './layout-logged/layout-logged.component';
 import { LayoutNotLoggedComponent } from './layout-not-logged/layout-not-logged.component';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
     declarations: [
@@ -32,6 +35,9 @@ import { LayoutNotLoggedComponent } from './layout-not-logged/layout-not-logged.
         SharedModule,
         CoreModule,
         AppRoutingModule,
+        StoreModule.forRoot({}, {}),
+        StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+        EffectsModule.forRoot([]),
     ]
 })
 export class AppModule {

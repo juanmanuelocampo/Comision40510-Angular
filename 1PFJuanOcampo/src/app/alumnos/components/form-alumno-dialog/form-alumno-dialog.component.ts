@@ -1,7 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
 import { Alumno } from 'src/app/models/Alumno';
+import { agregarAlumnoState, editarAlumnoState } from '../../alumno-state/alumno-state.actions';
+import { AlumnoState } from '../../alumno-state/alumno-state.reducer';
 import { AlumnoService } from '../../services/alumno.service';
 
 @Component({
@@ -17,6 +20,7 @@ export class FormAlumnoDialogComponent implements OnInit {
       private dialogRef: MatDialogRef<FormAlumnoDialogComponent>,
       @Inject(MAT_DIALOG_DATA) public data: any,
       private alumnoService: AlumnoService,
+      private store: Store<AlumnoState>
     ){
       this.formulario = new FormGroup({
         id: new FormControl((this.data.estadoventana === 'edicion')?data.id: '', Validators.required),
@@ -33,19 +37,27 @@ export class FormAlumnoDialogComponent implements OnInit {
     aceptar(){
       ((this.data.estadoventana === 'edicion')?this.editarAlumnoDesdeComponenteABM():this.agregarAlumnoDesdeComponenteABM());
     }
-
     agregarAlumnoDesdeComponenteABM(){
-      this.alumnoService.agregarAlumno(this.formulario.value).subscribe((alumno: Alumno) => {
-        alert(`${alumno.nombre} agregado correctamente.`);
-      });
+      let alumno: Alumno = this.completarCampos();
+      this.store.dispatch(agregarAlumnoState({alumno: alumno}));
     }
-
     editarAlumnoDesdeComponenteABM(){
-      this.alumnoService.editarAlumno(this.formulario.value).subscribe((alumno: Alumno) => {
-        alert(`${alumno.nombre} editado correctamente.`);
-      });
+      let alumno: Alumno = this.completarCampos();
+      this.store.dispatch(editarAlumnoState({alumno: alumno}));
     }
     cerrarModal(): void {
       this.dialogRef.close();
+    }
+
+    completarCampos():Alumno{
+      let alumno: Alumno = {
+        id: this.formulario.value.id,
+        nombre: this.formulario.value.nombre,
+        apellido: this.formulario.value.apellido,
+        email: this.formulario.value.email,
+        fecnac: this.formulario.value.fecnac,
+        activo: this.formulario.value.activo,
+      };
+      return alumno;
     }
 }

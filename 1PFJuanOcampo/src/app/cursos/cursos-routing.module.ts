@@ -1,15 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminGuard } from '../core/guards/admin.guard';
-import { SesionGuard } from '../core/guards/sesion.guard';
-import { EstadisticasCursoComponent } from './components/estadisticas-curso/estadisticas-curso.component';
-import { TablaCursoComponent } from './components/tabla-curso/tabla-curso.component';
+import { HistorialCursoComponent } from './components/historial-curso/historial-curso.component';
+import { TablacursoComponent } from './components/tabla-curso/tabla-curso.component';
 
 
 const routes: Routes = [
-  {path: '', canActivateChild: [SesionGuard], children: [
-      {path: 'tabla', component: TablaCursoComponent},
-      {path: 'estadisticas/:id', component: EstadisticasCursoComponent, canActivate: [AdminGuard]},
+  {path: '', children: [
+      {path: 'tabla', component: TablacursoComponent},
+      {path: 'historial/:id', component: HistorialCursoComponent, canActivate: [AdminGuard] },
       {path: '', redirectTo: 'tabla', pathMatch: 'full'},
   ]},
 ];

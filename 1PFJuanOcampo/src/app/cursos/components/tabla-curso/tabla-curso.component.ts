@@ -2,49 +2,60 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
-import { SesionService } from 'src/app/core/services/sesion.service';
+import { Observable, of, Subscription } from 'rxjs';
 import { Curso } from 'src/app/models/Curso';
-import { Sesion } from 'src/app/models/sesion';
-import { CursoService } from '../../services/curso.service';
 import { FormCursoDialogComponent } from '../form-curso-dialog/form-curso-dialog.component';
+import { CursoService } from '../../services/cursos.service';
+import { SesionService } from 'src/app/core/services/sesion.service';
+import { Sesion } from 'src/app/models/sesion';
+import { CursoState } from '../../curso-state/curso-state.reducer';
+import { Store } from '@ngrx/store';
+import { selectCargandoCursos, selectCursosCargados } from '../../curso-state/curso-state.selectors';
+import { cargarCursoState, eliminarCursoState } from '../../curso-state/curso-state.actions';
 
 @Component({
   selector: 'app-tablacurso',
   templateUrl: './tabla-curso.component.html',
   styleUrls: ['./tabla-curso.component.css']
 })
-export class TablaCursoComponent {
-  suscripcion!: Subscription;
+export class TablacursoComponent {
   estadoventana: string = 'consulta';
   cursos$!: Observable<Array<Curso>>;
   dataSource!: MatTableDataSource<Curso>;
   columnas: Array<string> = ['id', 'nombre', 'acciones'];
   sesion$!: Observable<Sesion>;
+  cargando$!: Observable<Boolean>;
+  ABMSubscription!: Subscription;
 
   constructor(
       private dialog: MatDialog,
       private cursoService: CursoService,
       private router: Router,
       private sesionService: SesionService,
+      private store: Store<CursoState>,
   ){}
 
   ngOnInit(): void {
+    this.store.dispatch(cargarCursoState());
+    this.cargando$ = this.store.select(selectCargandoCursos);
+    this.cursos$ = this.store.select(selectCursosCargados);
     this.dataSource = new MatTableDataSource<Curso>();
-    this.cursos$ = this.cursoService.obtenerCursosAPI(); //.obtenerCursosObservable();
-    //Subscribo al origen de datos
-    this.suscripcion = this.cursoService.obtenerCursosAPI().subscribe((cursos: Array<Curso>) => {//obtenerCursosObservable().subscribe((cursos: Array<Curso>) => {
+
+    //Esto se ejecuta cada vez que se actualiza el store
+    this.ABMSubscription = this.cursos$.subscribe((cursos: Array<Curso>) => {
       this.dataSource.data = cursos;
     });
     this.sesion$ = this.sesionService.obtenerSesion();
   }
-  ngOnDestroy(){
-    this.suscripcion.unsubscribe();
+
+  ngOnDestroy() {
+    this.ABMSubscription.unsubscribe();
   }
 
   eliminar(curso:Curso){
-    this.cursoService.eliminarCurso(curso);
+    this.store.dispatch(eliminarCursoState({curso: curso}));
   }
+
   modoEdicion(curso:Curso){
     this.estadoventana = 'edicion';
     this.abrirModal(curso);
@@ -54,17 +65,15 @@ export class TablaCursoComponent {
     let curso:Curso = this.cursoService.nuevoCurso;
     this.abrirModal(curso);
   }
-  redirigirEstadisticas(curso: Curso){
+
+  redirigirHistorial(curso: Curso){
     //Si bien envío el id y el objeto completo. Se deberían enviar solo una u otra
-    this.router.navigate(['curso/estadisticas/' + curso.id, curso]);
+    this.router.navigate(['curso/historial/' + curso.id, curso]);
   }
 
   abrirModal(curso: Curso){
     const dialogRef = this.dialog.open(FormCursoDialogComponent, {
       data: {...curso, estadoventana:this.estadoventana} //Revisar tutor: es una buena práctica la forma en que envío el estadoventana?
-    });
-    dialogRef.afterClosed().subscribe(curso => {
-      //esto se ejecuta al cerrar la modal
     });
   }
 }

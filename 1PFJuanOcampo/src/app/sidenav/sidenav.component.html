@@ -7,8 +7,8 @@
         <a (click)="redirigirInicio()"><span class="full-width">Inicio</span></a>
       </mat-list-item>
       <mat-list-item>
-        <span class="full-width">Usuarios</span>
-        <!-- <mat-icon mat-list-icon>account_circle</mat-icon>
+        <a routerLink="usuario/tabla" matListItemTitle (click)="sidenav.toggle()"><span class="full-width">Usuarios</span></a>
+        <!-- <mat-icon mat-list-icon>account_circle</mat-icon> -->
       </mat-list-item>
       <mat-list-item>
         <a routerLink="alumno/tabla" matListItemTitle (click)="sidenav.toggle()"><span class="full-width">Alumnos</span></a>
