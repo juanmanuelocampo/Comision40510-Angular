@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { concatMap, map } from "rxjs";
 import { Curso } from "src/app/models/Curso";
+import Swal from "sweetalert2";
 import { CursoService } from "../services/cursos.service";
 import { cursosCargados, cargarCursoState, eliminarCursoState, agregarCursoState, editarCursoState } from "./curso-state.actions";
 
@@ -27,9 +28,9 @@ export class CursosEffects{
             concatMap(({ curso }) => {
                 return this.cursosService.agregarCursoAPI(curso).pipe(
                     map((curso: Curso) => {
-                        alert(`${curso.nombre} agregado correctamente.`);
-                        //this.router.navigate(['cursos/listar']);
-                        return cargarCursoState();
+                      Swal.fire({text: `${curso.nombre} agregado correctamente.`,icon: 'success'})
+                      //this.router.navigate(['cursos/listar']);
+                      return cargarCursoState();
                     })
                 )
             })
@@ -42,7 +43,7 @@ export class CursosEffects{
           concatMap(({ curso }) => {
               return this.cursosService.editarCursoAPI(curso).pipe(
                   map((curso: Curso) => {
-                      alert(`${curso.nombre} editado correctamente.`);
+                      Swal.fire({text: `${curso.nombre} editado correctamente.`,icon: 'success'})
                       return cargarCursoState();
                   })
               )
@@ -57,7 +58,7 @@ export class CursosEffects{
                 let nombreeliminado = curso.nombre;
                 return this.cursosService.eliminarCursoAPI(curso).pipe(
                     map((curso: Curso) => {
-                        alert(`${nombreeliminado} eliminado correctamente.`);
+                        Swal.fire({text: `${curso.nombre} eliminado correctamente.`,icon: 'success'})
                         return cargarCursoState();
                     })
                 )

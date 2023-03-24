@@ -1,5 +1,4 @@
 <mat-sidenav-container class="example-container" autosize >
-
   <mat-sidenav #sidenav class="example-sidenav" mode="side" [mode]="'over'">
     <mat-nav-list>
       <mat-list-item>
@@ -23,7 +22,7 @@
         <!-- <mat-icon mat-list-icon>account_circle</mat-icon> -->
       </mat-list-item>
       <mat-list-item>
-        <a><span class="full-width">Inscripciones</span></a>
+        <a routerLink="inscripcion/tabla" matListItemTitle (click)="sidenav.toggle()"><span class="full-width">Inscripciones</span></a>
         <!-- <mat-icon mat-list-icon>account_circle</mat-icon> -->
       </mat-list-item>
       <mat-list-item>
@@ -33,7 +32,9 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-      <router-outlet></router-outlet>
+      <div class="container-fluid">
+        <router-outlet></router-outlet>
+      </div>
   </mat-sidenav-content>
 
 

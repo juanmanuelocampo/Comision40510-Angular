@@ -12,6 +12,7 @@ import { CursoState } from '../../curso-state/curso-state.reducer';
 import { Store } from '@ngrx/store';
 import { selectCargandoCursos, selectCursosCargados } from '../../curso-state/curso-state.selectors';
 import { cargarCursoState, eliminarCursoState } from '../../curso-state/curso-state.actions';
+import { VentanaStatsService } from 'src/app/shared/services/ventana-stats.service';
 
 @Component({
   selector: 'app-tablacurso',
@@ -22,7 +23,7 @@ export class TablacursoComponent {
   estadoventana: string = 'consulta';
   cursos$!: Observable<Array<Curso>>;
   dataSource!: MatTableDataSource<Curso>;
-  columnas: Array<string> = ['id', 'nombre', 'acciones'];
+  columnas: Array<string> = ['id', 'nombre', 'profesor', 'alumno', 'acciones'];
   sesion$!: Observable<Sesion>;
   cargando$!: Observable<Boolean>;
   ABMSubscription!: Subscription;
@@ -33,6 +34,7 @@ export class TablacursoComponent {
       private router: Router,
       private sesionService: SesionService,
       private store: Store<CursoState>,
+      private ventanaStatsService: VentanaStatsService
   ){}
 
   ngOnInit(): void {
@@ -46,6 +48,7 @@ export class TablacursoComponent {
       this.dataSource.data = cursos;
     });
     this.sesion$ = this.sesionService.obtenerSesion();
+    this.ventanaStatsService.incrementarStatsAPI(4).subscribe(); //Incremento la cantidad de ingresos a la ventana
   }
 
   ngOnDestroy() {

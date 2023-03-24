@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
-import { Usuario } from 'src/app/models/Usuario';
+import { Inscripcion } from 'src/app/models/Inscripcion';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { env } from '../../../environment/environment';
 import Swal from 'sweetalert2';
@@ -9,19 +9,17 @@ import Swal from 'sweetalert2';
   providedIn: 'root'
 })
 
-export class UsuarioService {
+export class InscripcionService {
   constructor(private http: HttpClient) {
   }
 
-  nuevoUsuario: Usuario = {
+  nuevoInscripcion: Inscripcion = {
     id: 0,
-    usuario: '',
-    contrasena: '',
-    esAdmin: false
+    fecha: new Date()
   };
 
-  obtenerUsuariosAPI(): Observable<Usuario[]>{
-      let auxObservable$ = this.http.get<Usuario[]>(`${env.apiURL}/usuario`, {
+  obtenerInscripcionesAPI(): Observable<Inscripcion[]>{
+      let auxObservable$ = this.http.get<Inscripcion[]>(`${env.apiURL}/inscripcion`, {
         headers: new HttpHeaders({
           'content-type': 'application/json',
           'encoding': 'UTF-8'
@@ -32,8 +30,8 @@ export class UsuarioService {
       return auxObservable$;
   }
 
-  eliminarUsuarioAPI(usuario: Usuario): Observable<Usuario>{
-      let auxObservable$ = this.http.delete<Usuario>(`${env.apiURL}/usuario/${usuario.id}`, {
+  eliminarInscripcionAPI(inscripcion: Inscripcion): Observable<Inscripcion>{
+      let auxObservable$ = this.http.delete<Inscripcion>(`${env.apiURL}/inscripcion/${inscripcion.id}`, {
         headers: new HttpHeaders({
         })
       }).pipe(
@@ -42,8 +40,8 @@ export class UsuarioService {
       return auxObservable$;
   }
 
-  editarUsuarioAPI(usuario: Usuario): Observable<Usuario>{
-    return this.http.put<Usuario>(`${env.apiURL}/usuario/${usuario.id}`, usuario, {
+  editarInscripcionAPI(inscripcion: Inscripcion): Observable<Inscripcion>{
+    return this.http.put<Inscripcion>(`${env.apiURL}/inscripcion/${inscripcion.id}`, inscripcion, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
@@ -52,8 +50,8 @@ export class UsuarioService {
     );
   }
 
-  agregarUsuarioAPI(usuario: Usuario): Observable<Usuario>{
-    return this.http.post<Usuario>(`${env.apiURL}/usuario`, usuario, {
+  agregarInscripcionAPI(inscripcion: Inscripcion): Observable<Inscripcion>{
+    return this.http.post<Inscripcion>(`${env.apiURL}/inscripcion`, inscripcion, {
       headers: new HttpHeaders({
         'encoding': 'UTF-8'
       })
@@ -68,7 +66,7 @@ export class UsuarioService {
     }else{
       Swal.fire({text: `Hubo un error del lado del servidor: ${error.message}`,icon: 'error'})
     }
-    return throwError(() => new Error('Error en el procesamiento de usuarios'));
+    return throwError(() => new Error('Error en el procesamiento de inscripciones'));
   }
 
 }

@@ -1,0 +1,23 @@
+<div class="container">
+  <h1 mat-dialog-header align="center"><b>{{tituloVentana}}</b></h1>
+  <hr>
+  <form [formGroup]="formulario">
+      <div class="form-group">
+        <label for="id">Id</label>
+        <input type="text" formControlName="id" class="form-control" placeholder="Id">
+      </div>
+
+      <mat-form-field class="form-group">
+        <label for="fecha">Fecha</label>
+        <input matInput [matDatepicker]="fecha" formControlName="fecha">
+        <mat-datepicker-toggle matSuffix [for]="fecha"></mat-datepicker-toggle>
+        <mat-datepicker #fecha></mat-datepicker>
+      </mat-form-field>
+  </form>
+
+  <div mat-dialog-actions>
+    <button mat-flat-button (click)="aceptar()" [disabled]="formulario.invalid" color="primary" [mat-dialog-close]="this.formulario.value" cdkFocusInitial>Aceptar</button>
+    <button mat-flat-button color="warn" (click)="cerrarModal()">Cancelar</button>
+  </div>
+
+</div>

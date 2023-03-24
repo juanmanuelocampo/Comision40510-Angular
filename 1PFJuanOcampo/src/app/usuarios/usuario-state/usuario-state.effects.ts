@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { concatMap, map } from "rxjs";
 import { Usuario } from "src/app/models/Usuario";
+import Swal from "sweetalert2";
 import { UsuarioService } from "../services/usuarios.service";
 import { usuariosCargados, cargarUsuarioState, eliminarUsuarioState, agregarUsuarioState, editarUsuarioState } from "./usuario-state.actions";
 
@@ -27,7 +28,7 @@ export class UsuariosEffects{
             concatMap(({ usuario }) => {
                 return this.usuariosService.agregarUsuarioAPI(usuario).pipe(
                     map((usuario: Usuario) => {
-                        alert(`${usuario.usuario} agregado correctamente.`);
+                        Swal.fire({text: `${usuario.usuario} agregado correctamente.`,icon: 'success'})
                         //this.router.navigate(['usuarios/listar']);
                         return cargarUsuarioState();
                     })
@@ -42,7 +43,7 @@ export class UsuariosEffects{
           concatMap(({ usuario }) => {
               return this.usuariosService.editarUsuarioAPI(usuario).pipe(
                   map((usuario: Usuario) => {
-                      alert(`${usuario.usuario} editado correctamente.`);
+                      Swal.fire({text: `${usuario.usuario} editado correctamente.`,icon: 'success'})
                       return cargarUsuarioState();
                   })
               )
@@ -57,7 +58,7 @@ export class UsuariosEffects{
                 let nombreeliminado = usuario.usuario;
                 return this.usuariosService.eliminarUsuarioAPI(usuario).pipe(
                     map((usuario: Usuario) => {
-                        alert(`${nombreeliminado} eliminado correctamente.`);
+                        Swal.fire({text: `${nombreeliminado} eliminado correctamente.`,icon: 'success'})
                         return cargarUsuarioState();
                     })
                 )

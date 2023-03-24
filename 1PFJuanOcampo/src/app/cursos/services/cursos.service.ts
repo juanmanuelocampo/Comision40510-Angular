@@ -3,6 +3,7 @@ import { catchError, Observable, throwError } from 'rxjs';
 import { Curso } from 'src/app/models/Curso';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { env } from '../../../environment/environment';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,23 @@ export class CursoService {
 
   nuevoCurso: Curso = {
     id: 0,
-    nombre: ''
+    nombre: '',
+    profesor: {
+      id: 0,
+      nombre: '',
+      apellido: '',
+      email: '',
+      fecnac: new Date(),
+      activo: false,
+    },
+    alumno: {
+      id: 0,
+      nombre: '',
+      apellido: '',
+      email: '',
+      fecnac: new Date(),
+      activo: false,
+    },
   };
 
   obtenerCursosAPI(): Observable<Curso[]>{
@@ -60,11 +77,10 @@ export class CursoService {
   }
 
   private capturarError(error: HttpErrorResponse){
-    alert('error')
     if(error.error instanceof ErrorEvent){
-      alert(`Hubo un error del lado del cliente: ${error.message}`);
+      Swal.fire({text: `Hubo un error del lado del cliente: ${error.message}`,icon: 'error'})
     }else{
-      alert(`Hubo un error del lado del servidor: ${error.message}`);
+      Swal.fire({text: `Hubo un error del lado del servidor: ${error.message}`,icon: 'error'})
     }
     return throwError(() => new Error('Error en el procesamiento de cursos'));
   }

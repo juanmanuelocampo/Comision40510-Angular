@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { concatMap, map } from "rxjs";
 import { Profesor } from "src/app/models/Profesor";
+import Swal from "sweetalert2";
 import { ProfesorService } from "../services/profesor.service";
 import { profesoresCargados, cargarProfesorState, eliminarProfesorState, agregarProfesorState, editarProfesorState } from "./profesor-state.actions";
 
@@ -27,7 +28,7 @@ export class ProfesoresEffects{
             concatMap(({ profesor }) => {
                 return this.profesoresService.agregarProfesorAPI(profesor).pipe(
                     map((profesor: Profesor) => {
-                        alert(`${profesor.nombre} agregado correctamente.`);
+                        Swal.fire({text: `${profesor.nombre} agregado correctamente.`,icon: 'success'})
                         //this.router.navigate(['profesores/listar']);
                         return cargarProfesorState();
                     })
@@ -42,7 +43,7 @@ export class ProfesoresEffects{
           concatMap(({ profesor }) => {
               return this.profesoresService.editarProfesorAPI(profesor).pipe(
                   map((profesor: Profesor) => {
-                      alert(`${profesor.nombre} editado correctamente.`);
+                    Swal.fire({text: `${profesor.nombre} editado correctamente.`,icon: 'success'})
                       return cargarProfesorState();
                   })
               )
@@ -57,7 +58,7 @@ export class ProfesoresEffects{
                 let nombreeliminado = profesor.apellido;
                 return this.profesoresService.eliminarProfesorAPI(profesor).pipe(
                     map((profesor: Profesor) => {
-                        alert(`${nombreeliminado} eliminado correctamente.`);
+                      Swal.fire({text: `${profesor.nombre} eliminado correctamente.`,icon: 'success'})
                         return cargarProfesorState();
                     })
                 )

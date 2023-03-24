@@ -3,6 +3,7 @@ import { catchError, Observable, throwError } from 'rxjs';
 import { Alumno } from 'src/app/models/Alumno';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { env } from '../../../environment/environment';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -64,11 +65,10 @@ export class AlumnoService {
   }
 
   private capturarError(error: HttpErrorResponse){
-    alert('error')
     if(error.error instanceof ErrorEvent){
-      alert(`Hubo un error del lado del cliente: ${error.message}`);
+      Swal.fire({text: `Hubo un error del lado del cliente: ${error.message}`,icon: 'error'})
     }else{
-      alert(`Hubo un error del lado del servidor: ${error.message}`);
+      Swal.fire({text: `Hubo un error del lado del servidor: ${error.message}`,icon: 'error'})
     }
     return throwError(() => new Error('Error en el procesamiento de cursos'));
   }

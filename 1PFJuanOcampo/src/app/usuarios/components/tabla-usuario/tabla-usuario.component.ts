@@ -12,6 +12,7 @@ import { UsuarioState } from '../../usuario-state/usuario-state.reducer';
 import { Store } from '@ngrx/store';
 import { selectCargandoUsuarios, selectUsuariosCargados } from '../../usuario-state/usuario-state.selectors';
 import { cargarUsuarioState, eliminarUsuarioState } from '../../usuario-state/usuario-state.actions';
+import { VentanaStatsService } from 'src/app/shared/services/ventana-stats.service';
 
 @Component({
   selector: 'app-tablausuario',
@@ -33,6 +34,7 @@ export class TablausuarioComponent {
       private router: Router,
       private sesionService: SesionService,
       private store: Store<UsuarioState>,
+      private ventanaStatsService: VentanaStatsService,
   ){}
 
   ngOnInit(): void {
@@ -46,6 +48,7 @@ export class TablausuarioComponent {
       this.dataSource.data = usuarios;
     });
     this.sesion$ = this.sesionService.obtenerSesion();
+    this.ventanaStatsService.incrementarStatsAPI(1).subscribe(); //Incremento la cantidad de ingresos a la ventana
   }
 
   ngOnDestroy() {

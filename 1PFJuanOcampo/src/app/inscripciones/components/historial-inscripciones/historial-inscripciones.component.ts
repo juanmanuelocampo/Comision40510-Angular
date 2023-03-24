@@ -3,11 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-historial-profesor',
-  templateUrl: './historial-profesor.component.html',
-  styleUrls: ['./historial-profesor.component.css']
+  selector: 'app-historial-inscripcion',
+  templateUrl: './historial-inscripciones.component.html',
+  styleUrls: ['./historial-inscripciones.component.css']
 })
-export class HistorialProfesorComponent {
+export class HistorialInscripcionComponent {
     columnChartOptions = {
       animationEnabled: true,
       title: {
@@ -30,7 +30,7 @@ export class HistorialProfesorComponent {
 
   constructor(private route: ActivatedRoute, private location: Location){
     this.route.params.subscribe(params => {
-      this.columnChartOptions.title.text = "Historial del profesor " + params['nombre'] + ' ' + params['apellido'];
+      this.columnChartOptions.title.text = "Historial del inscripcion " + params['nombre'] + ' ' + params['apellido'];
     });
   }
 

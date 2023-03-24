@@ -27,6 +27,7 @@ const routes: Routes = [
     children: [
       { path: 'inicio', loadChildren: () => import('./inicio/inicio.module').then((modulo) => modulo.IniciosModule), canLoad: [SesionGuard] },
       { path: 'usuario', loadChildren: () => import('./usuarios/usuarios.module').then((modulo) => modulo.UsuariosModule), canLoad: [SesionGuard] },
+      { path: 'inscripcion', loadChildren: () => import('./inscripciones/inscripciones.module').then((modulo) => modulo.InscripcionesModule), canLoad: [SesionGuard] },
       { path: 'curso', loadChildren: () => import('./cursos/cursos.module').then((modulo) => modulo.CursosModule), canLoad: [SesionGuard] },
       { path: 'alumno', loadChildren: () => import('./alumnos/alumnos.module').then((modulo) => modulo.AlumnosModule), canLoad: [SesionGuard] },
       { path: 'profesor', loadChildren: () => import('./profesores/profesores.module').then((modulo) => modulo.ProfesoresModule), canLoad: [SesionGuard] },

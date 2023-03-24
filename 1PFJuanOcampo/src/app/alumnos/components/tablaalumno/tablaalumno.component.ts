@@ -12,6 +12,7 @@ import { AlumnoState } from '../../alumno-state/alumno-state.reducer';
 import { Store } from '@ngrx/store';
 import { selectCargandoAlumnos, selectAlumnosCargados } from '../../alumno-state/alumno-state.selectors';
 import { cargarAlumnoState, eliminarAlumnoState } from '../../alumno-state/alumno-state.actions';
+import { VentanaStatsService } from 'src/app/shared/services/ventana-stats.service';
 
 @Component({
   selector: 'app-tablaalumno',
@@ -33,6 +34,7 @@ export class TablaalumnoComponent {
       private router: Router,
       private sesionService: SesionService,
       private store: Store<AlumnoState>,
+      private ventanaStatsService: VentanaStatsService
   ){}
 
   ngOnInit(): void {
@@ -46,6 +48,7 @@ export class TablaalumnoComponent {
       this.dataSource.data = alumnos;
     });
     this.sesion$ = this.sesionService.obtenerSesion();
+    this.ventanaStatsService.incrementarStatsAPI(2).subscribe(); //Incremento la cantidad de ingresos a la ventana
   }
 
   ngOnDestroy() {

@@ -12,6 +12,7 @@ import { ProfesorState } from '../../profesor-state/profesor-state.reducer';
 import { Store } from '@ngrx/store';
 import { selectCargandoProfesores, selectProfesoresCargados } from '../../profesor-state/profesor-state.selectors';
 import { cargarProfesorState, eliminarProfesorState } from '../../profesor-state/profesor-state.actions';
+import { VentanaStatsService } from '../../../shared/services/ventana-stats.service';
 
 @Component({
   selector: 'app-tablaprofesor',
@@ -33,6 +34,7 @@ export class TablaprofesorComponent {
       private router: Router,
       private sesionService: SesionService,
       private store: Store<ProfesorState>,
+      private ventanaStatsService: VentanaStatsService,
   ){}
 
   ngOnInit(): void {
@@ -46,6 +48,7 @@ export class TablaprofesorComponent {
       this.dataSource.data = profesores;
     });
     this.sesion$ = this.sesionService.obtenerSesion();
+    this.ventanaStatsService.incrementarStatsAPI(3).subscribe(); //Incremento la cantidad de ingresos a la ventana
   }
 
   ngOnDestroy() {

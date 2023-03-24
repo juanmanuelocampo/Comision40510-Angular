@@ -20,6 +20,8 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {HttpClientModule} from '@angular/common/http';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
+
 
 
 
@@ -42,6 +44,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatFormFieldModule,
     MatSlideToggleModule,
     MatProgressSpinnerModule,
+    MatSelectModule,
   ],
   exports: [
     MatTableModule,
@@ -60,6 +63,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatFormFieldModule,
     MatSlideToggleModule,
     MatProgressSpinnerModule,
+    MatSelectModule,
   ],
 })
 export class MaterialModule { }

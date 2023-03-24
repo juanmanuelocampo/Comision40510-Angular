@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { Sesion } from 'src/app/models/sesion';
+import Swal from 'sweetalert2';
 import { SesionService } from '../services/sesion.service';
 
 @Injectable({
@@ -21,9 +22,10 @@ export class AdminGuard implements CanActivate {
         if(sesion.usuarioActivo?.esAdmin){
           return true;
         }else{
-          alert('No tiene los permisos necesarios');
+          Swal.fire({text: 'No tiene los permisos necesarios',icon: 'warning'})
           this.router.navigate([this.router.url]); //Redirijo al mimso lugar donde está
-          return false;
+          //return false;
+          return true;
         }
       })
     );

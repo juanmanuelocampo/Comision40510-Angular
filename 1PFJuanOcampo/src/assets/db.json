@@ -1,4 +1,37 @@
 {
+  "ventanastat": [
+    {
+      "id": 1,
+      "label": "Usuarios",
+      "y": 4
+    },
+    {
+      "id": 2,
+      "label": "Alumnos",
+      "y": 11
+    },
+    {
+      "id": 3,
+      "label": "Profesores",
+      "y": 6
+    },
+    {
+      "id": 4,
+      "label": "Cursos",
+      "y": 8
+    },
+    {
+      "id": 5,
+      "label": "Inscripciones",
+      "y": 5
+    }
+  ],
+  "inscripcion": [
+    {
+      "id": "2",
+      "fecha": "2023-03-21T03:00:00.000Z"
+    }
+  ],
   "usuario": [
     {
       "id": 1,
@@ -13,52 +46,54 @@
       "esAdmin": true
     }
   ],
-  "inscripcion": [
-    {
-      "id": "1",
-      "nombre": "Angular"
-    }
-  ],
   "curso": [
     {
-      "id": "1",
-      "nombre": "Angular"
+      "id": "2",
+      "nombre": "Angular2",
+      "profesor": {
+        "id": "1",
+        "nombre": "Daniela",
+        "apellido": "Lerda",
+        "email": "Profesor@Profesor",
+        "fecnac": "2023-03-21T03:00:00.000Z",
+        "activo": true
+      },
+      "alumno": {
+        "id": "1",
+        "nombre": "Popi",
+        "apellido": "Ocampo",
+        "email": "Tyree_Monahan@yahoo.com",
+        "fecnac": "2023-03-21T03:00:00.000Z",
+        "activo": true
+      }
     }
   ],
   "alumno": [
     {
-      "id": "1",
-      "nombre": "Jermey",
-      "apellido": "Larkin",
-      "email": "Tyree_Monahan@yahoo.com",
-      "fecnac": "2023-03-21T03:00:00.000Z",
-      "activo": true
-    },
-    {
       "id": "2",
-      "nombre": "alumno1",
-      "apellido": "alumno1",
+      "nombre": "Belénnnn",
+      "apellido": "Ocampo",
       "email": "alumno1@alumno1.com",
-      "fecnac": 1677693103,
+      "fecnac": "2023-03-23T03:00:00.000Z",
       "activo": true
     }
   ],
   "profesor": [
     {
       "id": "1",
-      "nombre": "Profesora",
-      "apellido": "Profesor",
+      "nombre": "Daniela",
+      "apellido": "Lerda",
       "email": "Profesor@Profesor",
       "fecnac": "2023-03-21T03:00:00.000Z",
-      "activo": false
+      "activo": true
     },
     {
       "id": "2",
-      "nombre": "2",
-      "apellido": "2",
+      "nombre": "Luciano",
+      "apellido": "Nitardi",
       "email": "2@2",
       "fecnac": "2023-03-21T03:00:00.000Z",
-      "activo": ""
+      "activo": true
     }
   ]
 }
