@@ -24,6 +24,7 @@
     "@ngrx/store": "^15.4.0",
     "@ngrx/store-devtools": "^15.4.0",
     "bootstrap": "^5.2.3",
+    "http-server": "^14.1.1",
     "rxjs": "~7.5.0",
     "sweetalert2": "^11.7.3",
     "tslib": "^2.3.0",
@@ -31,7 +32,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^15.0.5",
-    "@angular/cli": "~15.0.5",
+    "@angular/cli": "^15.2.4",
     "@angular/compiler-cli": "^15.0.0",
     "@ngrx/schematics": "^15.4.0",
     "@types/jasmine": "~4.3.0",

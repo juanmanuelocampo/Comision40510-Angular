@@ -1,4 +1,4 @@
-<h2 class="text-center mt-5"><strong>Listado de Usuarios</strong></h2>
+<h2 class="text-center mt-2"><strong>Listado de Usuarios</strong></h2>
 <div class="row" *ngIf="cargando$ | async">
   <div class="col-md-12">
       <mat-spinner></mat-spinner>
@@ -6,7 +6,7 @@
 </div>
 
 <ng-container *ngIf="sesion$ | async as sesionactual">
-  <button *ngIf="sesionactual.usuarioActivo?.esAdmin" mat-flat-button color="primary" (click)="modoAlta()">Agregar</button>
+  <button class="mb-2" *ngIf="sesionactual.usuarioActivo?.esAdmin" mat-flat-button color="primary" (click)="modoAlta()">Agregar</button>
 </ng-container>
 
 <table mat-table [dataSource]="dataSource">

@@ -5,7 +5,6 @@ import { Store } from '@ngrx/store';
 import { Alumno } from 'src/app/models/Alumno';
 import { agregarAlumnoState, editarAlumnoState } from '../../alumno-state/alumno-state.actions';
 import { AlumnoState } from '../../alumno-state/alumno-state.reducer';
-import { AlumnoService } from '../../services/alumno.service';
 
 @Component({
   selector: 'app-form-alumno-dialog',
@@ -19,8 +18,7 @@ export class FormAlumnoDialogComponent implements OnInit {
     constructor(
       private dialogRef: MatDialogRef<FormAlumnoDialogComponent>,
       @Inject(MAT_DIALOG_DATA) public data: any,
-      private alumnoService: AlumnoService,
-      private store: Store<AlumnoState>
+      private store: Store<AlumnoState>,
     ){
       this.formulario = new FormGroup({
         id: new FormControl((this.data.estadoventana === 'edicion')?data.id: '', Validators.required),
@@ -31,20 +29,26 @@ export class FormAlumnoDialogComponent implements OnInit {
         activo: new FormControl((this.data.estadoventana === 'edicion')?data.activo: ''),
       })
     }
+
     ngOnInit(): void {
     }
 
     aceptar(){
       ((this.data.estadoventana === 'edicion')?this.editarAlumnoDesdeComponenteABM():this.agregarAlumnoDesdeComponenteABM());
     }
+
     agregarAlumnoDesdeComponenteABM(){
       let alumno: Alumno = this.completarCampos();
       this.store.dispatch(agregarAlumnoState({alumno: alumno}));
+      this.cerrarModal();
     }
+
     editarAlumnoDesdeComponenteABM(){
       let alumno: Alumno = this.completarCampos();
       this.store.dispatch(editarAlumnoState({alumno: alumno}));
+      this.cerrarModal();
     }
+
     cerrarModal(): void {
       this.dialogRef.close();
     }

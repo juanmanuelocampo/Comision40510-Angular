@@ -10,6 +10,7 @@ import { AlumnoService } from 'src/app/alumnos/services/alumno.service';
 import { agregarCursoState, editarCursoState } from '../../curso-state/curso-state.actions';
 import { CursoState } from '../../curso-state/curso-state.reducer';
 import { Alumno } from 'src/app/models/Alumno';
+import { CursoService } from '../../services/cursos.service';
 
 @Component({
   selector: 'app-form-curso-dialog',
@@ -26,8 +27,9 @@ export class FormCursoDialogComponent implements OnInit {
       private dialogRef: MatDialogRef<FormCursoDialogComponent>,
       @Inject(MAT_DIALOG_DATA) public data: any,
       private store: Store<CursoState>,
-      private profesores: ProfesorService,
-      private alumnos: AlumnoService
+      private profesoreService: ProfesorService,
+      private alumnoService: AlumnoService,
+      private cursoService: CursoService
     ){
       this.formulario = new FormGroup({
         id: new FormControl((this.data.estadoventana === 'edicion')?data.id: '', Validators.required),
@@ -37,22 +39,25 @@ export class FormCursoDialogComponent implements OnInit {
       })
     }
     ngOnInit(): void {
-        this.profesores$ = this.profesores.obtenerProfesoresAPI();
-        this.alumnos$ = this.alumnos.obtenerAlumnosAPI();
+        this.profesores$ = this.profesoreService.obtenerProfesoresAPI();
+        this.alumnos$ = this.alumnoService.obtenerAlumnosAPI();
     }
 
-    aceptar(){
+    async aceptar(){
+      if (await this.cursoService.validacionesCursoAPI(this.formulario.value) == false) return;
       ((this.data.estadoventana === 'edicion')?this.editarCursoDesdeComponenteABM():this.agregarCursoDesdeComponenteABM());
     }
 
     agregarCursoDesdeComponenteABM(){
       let curso: Curso = this.completarCampos();
       this.store.dispatch(agregarCursoState({curso: curso}));
+      this.cerrarModal();
     }
 
     editarCursoDesdeComponenteABM(){
       let curso: Curso = this.completarCampos();
       this.store.dispatch(editarCursoState({curso: curso}));
+      this.cerrarModal();
     }
 
     cerrarModal(): void {

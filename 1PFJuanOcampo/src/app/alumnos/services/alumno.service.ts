@@ -4,6 +4,7 @@ import { Alumno } from 'src/app/models/Alumno';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { env } from '../../../environment/environment';
 import Swal from 'sweetalert2';
+import { Curso } from 'src/app/models/Curso';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,31 @@ export class AlumnoService {
         catchError(this.capturarError)
       );
       return auxObservable$;
+  }
+
+  getAlumnoAPI(alumno:Alumno): Observable<Alumno>{
+    let auxObservable$ = this.http.get<Alumno>(`${env.apiURL}/alumno/${alumno.id}`, {
+      headers: new HttpHeaders({
+        'content-type': 'application/json',
+        'encoding': 'UTF-8'
+      })
+    }).pipe(
+      catchError(this.capturarError)
+    );
+    return auxObservable$;
+  }
+
+  obtenerCursosAlumnoAPI(alumno: Alumno): Observable<Curso[]>{
+    //console.log('desde API:',alumno)
+    let auxObservable$ = this.http.get<Curso[]>(`${env.apiURL}/curso?alumno.id=${alumno.id}`, {
+      headers: new HttpHeaders({
+        'content-type': 'application/json',
+        'encoding': 'UTF-8'
+      })
+    }).pipe(
+      catchError(this.capturarError)
+    );
+    return auxObservable$;
   }
 
   eliminarAlumnoAPI(alumno: Alumno): Observable<Alumno>{

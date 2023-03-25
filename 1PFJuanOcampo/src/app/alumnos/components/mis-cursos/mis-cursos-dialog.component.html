@@ -1,0 +1,36 @@
+<div class="container">
+
+  <ng-container *ngIf="cursos$ | async as cursosalumno">
+    <h2 *ngIf="(cursosalumno.length == 0)">El Alumno seleccionado no se encuentra inscriptos en cursos.</h2>
+
+    <ng-container *ngIf="!(cursosalumno.length == 0)">
+      <h2 class="text-center mt-2"><strong>Listado de Cursos del alumno</strong></h2>
+      <table mat-table [dataSource]="dataSource">
+        <!-- Columna de Id -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>Id</th>
+          <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+        </ng-container>
+        <!-- Columna de Nombre -->
+        <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef>Curso</th>
+            <td mat-cell *matCellDef="let element">{{ element.nombre }}</td>
+        </ng-container>
+        <!-- Columna de Profesor -->
+        <ng-container matColumnDef="profesor">
+          <th mat-header-cell *matHeaderCellDef>Profesor</th>
+          <td mat-cell *matCellDef="let element">{{ element.profesor.nombre }}</td>
+        </ng-container>
+        <!-- Columna de Profesor -->
+        <ng-container matColumnDef="alumno">
+          <th mat-header-cell *matHeaderCellDef>Alumno</th>
+          <td mat-cell *matCellDef="let element">{{ element.alumno.nombre }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+        <tr mat-row *matRowDef="let row; columns:columnas"></tr>
+      </table>
+    </ng-container>
+  </ng-container>
+
+</div>

@@ -15,3 +15,13 @@ export const selectAlumnosCargados = createSelector(
   selectAlumnoState,
   (state: fromAlumnoState.AlumnoState) => state.alumnos
 );
+
+export const selectCargandoCursosAlumno = createSelector(
+  selectAlumnoState,
+  (state: fromAlumnoState.AlumnoState) => state.cargando
+);
+
+export const selectCursosAlumnoCargados = createSelector(
+  selectAlumnoState,
+  (state: fromAlumnoState.AlumnoState) => state.cursos
+);

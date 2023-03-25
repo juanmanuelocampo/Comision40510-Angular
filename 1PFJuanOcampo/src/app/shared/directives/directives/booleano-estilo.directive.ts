@@ -13,7 +13,7 @@ export class BooleanoEstiloDirective implements OnInit{
   }
 
   ngOnInit(): void {
-    console.log(this.esVerdadero);
+    //console.log(this.esVerdadero);
     this.renderer.setStyle(this.element.nativeElement, 'padding', '0px 0px 0px 0px');
     this.renderer.setStyle(this.element.nativeElement, 'border-radius', '40px');
     this.renderer.setStyle(this.element.nativeElement, 'color', '#ffffff');

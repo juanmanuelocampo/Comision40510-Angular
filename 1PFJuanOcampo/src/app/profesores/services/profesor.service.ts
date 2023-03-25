@@ -34,6 +34,18 @@ export class ProfesorService {
       return auxObservable$;
   }
 
+  getProfesorAPI(profesor:Profesor): Observable<Profesor>{
+    let auxObservable$ = this.http.get<Profesor>(`${env.apiURL}/profesor/${profesor.id}`, {
+      headers: new HttpHeaders({
+        'content-type': 'application/json',
+        'encoding': 'UTF-8'
+      })
+    }).pipe(
+      catchError(this.capturarError)
+    );
+    return auxObservable$;
+  }
+
   eliminarProfesorAPI(profesor: Profesor): Observable<Profesor>{
       let auxObservable$ = this.http.delete<Profesor>(`${env.apiURL}/profesor/${profesor.id}`, {
         headers: new HttpHeaders({

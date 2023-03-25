@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Observable, of, Subscription } from 'rxjs';
@@ -13,6 +13,7 @@ import { Store } from '@ngrx/store';
 import { selectCargandoAlumnos, selectAlumnosCargados } from '../../alumno-state/alumno-state.selectors';
 import { cargarAlumnoState, eliminarAlumnoState } from '../../alumno-state/alumno-state.actions';
 import { VentanaStatsService } from 'src/app/shared/services/ventana-stats.service';
+import { MisCursosDialogComponent } from '../mis-cursos/mis-cursos-dialog.component';
 
 @Component({
   selector: 'app-tablaalumno',
@@ -75,8 +76,19 @@ export class TablaalumnoComponent {
   }
 
   abrirModal(alumno: Alumno){
-    const dialogRef = this.dialog.open(FormAlumnoDialogComponent, {
-      data: {...alumno, estadoventana:this.estadoventana} //Revisar tutor: es una buena práctica la forma en que envío el estadoventana?
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true; //No cierra la modal con ESC oal hacer clic fuera de la modal
+    dialogConfig.data = {...alumno, estadoventana:this.estadoventana};
+    const dialogRef = this.dialog.open(
+      FormAlumnoDialogComponent,
+      dialogConfig
+    );
+
+  }
+
+  abrirMisCursos(alumno: Alumno){
+    const dialogRef = this.dialog.open(MisCursosDialogComponent, {
+      data: {...alumno}
     });
   }
 }

@@ -4,13 +4,19 @@ import { Curso } from 'src/app/models/Curso';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { env } from '../../../environment/environment';
 import Swal from 'sweetalert2';
+import { ProfesorService } from '../../profesores/services/profesor.service';
+import { AlumnoService } from 'src/app/alumnos/services/alumno.service';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class CursoService {
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private servicioProfesor: ProfesorService,
+    private servicioAlumno: AlumnoService,
+  ) {
   }
 
   nuevoCurso: Curso = {
@@ -33,6 +39,22 @@ export class CursoService {
       activo: false,
     },
   };
+
+  async validacionesCursoAPI(curso: Curso): Promise<boolean> {
+    const auxProfesor = await this.servicioProfesor.getProfesorAPI(curso.profesor).toPromise()
+    if (auxProfesor?.activo == false){
+      Swal.fire({text: `Atención: El profesor seleccionado se encuentra deshabilitado. Por lo tanto, no podrá continuar.`, icon: 'warning'})
+      return false;
+    }
+
+    const auxAlumno = await this.servicioAlumno.getAlumnoAPI(curso.alumno).toPromise()
+    if (curso.alumno.activo == false){
+      Swal.fire({text: `Atención: El alumno seleccionado se encuentra deshabilitado. Por lo tanto, no podrá continuar.`, icon: 'warning'})
+      return false;
+    }
+    console.log('3')
+    return true;
+  }
 
   obtenerCursosAPI(): Observable<Curso[]>{
       let auxObservable$ = this.http.get<Curso[]>(`${env.apiURL}/curso`, {
