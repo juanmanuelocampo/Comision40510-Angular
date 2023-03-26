@@ -4,19 +4,51 @@ import { Inscripcion } from 'src/app/models/Inscripcion';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { env } from '../../../environment/environment';
 import Swal from 'sweetalert2';
+import { AlumnoService } from 'src/app/alumnos/services/alumno.service';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class InscripcionService {
-  constructor(private http: HttpClient) {
-  }
+  constructor(
+    private http: HttpClient,
+    private servicioAlumno: AlumnoService,
+    ) {}
 
   nuevoInscripcion: Inscripcion = {
     id: 0,
-    fecha: new Date()
+    fecha: new Date(),
+    alumno: {
+      id: 0,
+      nombre: '',
+      apellido: '',
+      email: '',
+      fecnac: new Date(),
+      activo: false,
+    },
+    curso: {
+      id: 0,
+      nombre: '',
+      profesor: {
+        id: 0,
+        nombre: '',
+        apellido: '',
+        email: '',
+        fecnac: new Date(),
+        activo: false,
+      },
+    }
   };
+
+  async validacionesInscripcionesAPI(inscripcion: Inscripcion): Promise<boolean> {
+    const auxAlumno = await this.servicioAlumno.getAlumnoAPI(inscripcion.alumno).toPromise()
+    if (inscripcion.alumno.activo == false){
+      Swal.fire({text: `Atención: El alumno seleccionado se encuentra deshabilitado. Por lo tanto, no podrá continuar.`, icon: 'warning'})
+      return false;
+    }
+    return true;
+  }
 
   obtenerInscripcionesAPI(): Observable<Inscripcion[]>{
       let auxObservable$ = this.http.get<Inscripcion[]>(`${env.apiURL}/inscripcion`, {
@@ -28,6 +60,26 @@ export class InscripcionService {
         catchError(this.capturarError)
       );
       return auxObservable$;
+  }
+  getNextIdAPI(): Observable<Inscripcion[]>{
+    let auxObservable$ = this.http.get<Inscripcion[]>(`${env.apiURL}/inscripcion?_sort=id&_order=desc&_limit=1`, {
+      headers: new HttpHeaders({
+        'content-type': 'application/json',
+        'encoding': 'UTF-8'
+      })
+    }).pipe(
+      catchError(this.capturarError)
+    );
+    return auxObservable$;
+  }
+
+  async validacionesInscripcionAPI(inscripcion: Inscripcion): Promise<boolean> {
+    const auxAlumno = await this.servicioAlumno.getAlumnoAPI(inscripcion.alumno).toPromise()
+    if (auxAlumno?.activo == false){
+      Swal.fire({text: `Atención: El alumno seleccionado se encuentra deshabilitado. Por lo tanto, no podrá continuar.`, icon: 'warning'})
+      return false;
+    }
+    return true;
   }
 
   eliminarInscripcionAPI(inscripcion: Inscripcion): Observable<Inscripcion>{

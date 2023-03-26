@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { Alumno } from 'src/app/models/Alumno';
 import { agregarAlumnoState, editarAlumnoState } from '../../alumno-state/alumno-state.actions';
 import { AlumnoState } from '../../alumno-state/alumno-state.reducer';
+import { AlumnoService } from '../../services/alumno.service';
 
 @Component({
   selector: 'app-form-alumno-dialog',
@@ -18,6 +19,7 @@ export class FormAlumnoDialogComponent implements OnInit {
     constructor(
       private dialogRef: MatDialogRef<FormAlumnoDialogComponent>,
       @Inject(MAT_DIALOG_DATA) public data: any,
+      private alumnoService: AlumnoService,
       private store: Store<AlumnoState>,
     ){
       this.formulario = new FormGroup({
@@ -26,11 +28,14 @@ export class FormAlumnoDialogComponent implements OnInit {
         apellido: new FormControl((this.data.estadoventana === 'edicion')?data.apellido: '', Validators.required),
         email: new FormControl((this.data.estadoventana === 'edicion')?data.email: '', Validators.email),
         fecnac: new FormControl((this.data.estadoventana === 'edicion')?data.fecnac: '', Validators.required),
-        activo: new FormControl((this.data.estadoventana === 'edicion')?data.activo: ''),
+        activo: new FormControl((this.data.estadoventana === 'edicion')?data.activo: true),
       })
     }
 
     ngOnInit(): void {
+      this.alumnoService.getNextIdAPI().subscribe((alumno) => {
+        if(this.data.estadoventana === 'alta') this.formulario.controls['id'].setValue((alumno[0]?.id === undefined)?1:parseInt(String(alumno[0]?.id))+1);
+      })
     }
 
     aceptar(){

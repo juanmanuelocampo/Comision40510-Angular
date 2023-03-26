@@ -6,7 +6,7 @@ import { concatMap, map } from "rxjs";
 import { Profesor } from "src/app/models/Profesor";
 import Swal from "sweetalert2";
 import { ProfesorService } from "../services/profesor.service";
-import { profesoresCargados, cargarProfesorState, eliminarProfesorState, agregarProfesorState, editarProfesorState } from "./profesor-state.actions";
+import { cargarProfesorState, profesoresCargados, eliminarProfesorState, editarProfesorState, agregarProfesorState } from "./profesor-state.actions";
 
 @Injectable()
 export class ProfesoresEffects{

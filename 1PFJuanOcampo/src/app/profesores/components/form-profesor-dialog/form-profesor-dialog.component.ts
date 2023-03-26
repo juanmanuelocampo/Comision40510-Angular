@@ -28,10 +28,13 @@ export class FormProfesorDialogComponent implements OnInit {
         apellido: new FormControl((this.data.estadoventana === 'edicion')?data.apellido: '', Validators.required),
         email: new FormControl((this.data.estadoventana === 'edicion')?data.email: '', Validators.email),
         fecnac: new FormControl((this.data.estadoventana === 'edicion')?data.fecnac: '', Validators.required),
-        activo: new FormControl((this.data.estadoventana === 'edicion')?data.activo: ''),
+        activo: new FormControl((this.data.estadoventana === 'edicion')?data.activo: true),
       })
     }
     ngOnInit(): void {
+      this.profesorService.getNextIdAPI().subscribe((profesor) => {
+        if(this.data.estadoventana === 'alta') this.formulario.controls['id'].setValue((profesor[0]?.id === undefined)?1:parseInt(String(profesor[0]?.id))+1);
+      })
     }
 
     aceptar(){

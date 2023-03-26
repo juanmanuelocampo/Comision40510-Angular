@@ -13,7 +13,7 @@ import { Store } from '@ngrx/store';
 import { selectCargandoAlumnos, selectAlumnosCargados } from '../../alumno-state/alumno-state.selectors';
 import { cargarAlumnoState, eliminarAlumnoState } from '../../alumno-state/alumno-state.actions';
 import { VentanaStatsService } from 'src/app/shared/services/ventana-stats.service';
-import { MisCursosDialogComponent } from '../mis-cursos/mis-cursos-dialog.component';
+import { MisInscripcionesDialogComponent } from '../mis-inscripciones/mis-inscripciones-dialog.component';
 
 @Component({
   selector: 'app-tablaalumno',
@@ -87,7 +87,7 @@ export class TablaalumnoComponent {
   }
 
   abrirMisCursos(alumno: Alumno){
-    const dialogRef = this.dialog.open(MisCursosDialogComponent, {
+    const dialogRef = this.dialog.open(MisInscripcionesDialogComponent, {
       data: {...alumno}
     });
   }

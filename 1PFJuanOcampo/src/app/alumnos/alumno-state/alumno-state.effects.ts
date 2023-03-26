@@ -4,10 +4,9 @@ import { Router } from "@angular/router";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { concatMap, map } from "rxjs";
 import { Alumno } from "src/app/models/Alumno";
-import { Curso } from "src/app/models/Curso";
 import Swal from "sweetalert2";
 import { AlumnoService } from "../services/alumno.service";
-import { alumnosCargados, cargarCursosAlumnoState, cargarAlumnoState, eliminarAlumnoState, agregarAlumnoState, editarAlumnoState, cursosAlumnoCargados } from "./alumno-state.actions";
+import { alumnosCargados, cargarAlumnoState, eliminarAlumnoState, agregarAlumnoState, editarAlumnoState } from "./alumno-state.actions";
 
 @Injectable()
 export class AlumnosEffects{
@@ -21,17 +20,6 @@ export class AlumnosEffects{
               )
           })
       )
-    });
-
-    cursosAlumnos$ = createEffect(() => {
-        return this.actions$.pipe( // Obserable2
-            ofType(cargarCursosAlumnoState),
-            concatMap(({ alumno }) => {
-                return this.alumnosService.obtenerCursosAlumnoAPI(alumno).pipe( // Observable1
-                    map((c: Curso[]) => cursosAlumnoCargados({ cursos: c }))
-                )
-            })
-        )
     });
 
     agregarAlumno$ = createEffect(() => {

@@ -32,6 +32,18 @@ export class UsuarioService {
       return auxObservable$;
   }
 
+  getNextIdAPI(): Observable<Usuario[]>{
+    let auxObservable$ = this.http.get<Usuario[]>(`${env.apiURL}/usuario?_sort=id&_order=desc&_limit=1`, {
+      headers: new HttpHeaders({
+        'content-type': 'application/json',
+        'encoding': 'UTF-8'
+      })
+    }).pipe(
+      catchError(this.capturarError)
+    );
+    return auxObservable$;
+  }
+
   eliminarUsuarioAPI(usuario: Usuario): Observable<Usuario>{
       let auxObservable$ = this.http.delete<Usuario>(`${env.apiURL}/usuario/${usuario.id}`, {
         headers: new HttpHeaders({

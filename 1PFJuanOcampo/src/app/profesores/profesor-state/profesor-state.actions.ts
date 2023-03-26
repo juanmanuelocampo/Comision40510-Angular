@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { Curso } from 'src/app/models/Curso';
 import { Profesor } from 'src/app/models/Profesor';
 
 export const cargarProfesorState = createAction(

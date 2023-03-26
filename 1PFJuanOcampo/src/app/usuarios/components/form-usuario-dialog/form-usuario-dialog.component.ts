@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Usuario } from 'src/app/models/Usuario';
+import { UsuarioService } from '../../services/usuarios.service';
 import { agregarUsuarioState, editarUsuarioState } from '../../usuario-state/usuario-state.actions';
 import { UsuarioState } from '../../usuario-state/usuario-state.reducer';
 
@@ -18,7 +19,8 @@ export class FormUsuarioDialogComponent implements OnInit {
     constructor(
       private dialogRef: MatDialogRef<FormUsuarioDialogComponent>,
       @Inject(MAT_DIALOG_DATA) public data: any,
-      private store: Store<UsuarioState>
+      private store: Store<UsuarioState>,
+      private usuarioService: UsuarioService,
     ){
       this.formulario = new FormGroup({
         id: new FormControl((this.data.estadoventana === 'edicion')?data.id: '', Validators.required),
@@ -28,6 +30,9 @@ export class FormUsuarioDialogComponent implements OnInit {
       })
     }
     ngOnInit(): void {
+      this.usuarioService.getNextIdAPI().subscribe((usuario) => {
+        if(this.data.estadoventana === 'alta') this.formulario.controls['id'].setValue((usuario[0]?.id === undefined)?1:parseInt(String(usuario[0]?.id))+1);
+      })
     }
 
     aceptar(){

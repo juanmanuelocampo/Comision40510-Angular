@@ -7,16 +7,31 @@
         <input type="text" formControlName="id" class="form-control" placeholder="Id">
       </div>
 
-      <mat-form-field class="form-group">
-        <label for="fecha">Fecha</label>
+      <mat-form-field class="form-group mt-2" appearance="outline">
+        <label for="fecha">Fecha Inscripción</label>
         <input matInput [matDatepicker]="fecha" formControlName="fecha">
         <mat-datepicker-toggle matSuffix [for]="fecha"></mat-datepicker-toggle>
         <mat-datepicker #fecha></mat-datepicker>
       </mat-form-field>
+
+      <div class="form-group">
+        <label for="nombre">Alumno</label>
+        <mat-select [compareWith]="setValueSelect" class="form-control" formControlName="alumno">
+            <mat-option *ngFor="let alumno of alumnos$ | async" [value]="alumno">{{ alumno.nombre + ' ' + alumno.apellido }}</mat-option>
+        </mat-select>
+      </div>
+
+      <div class="form-group">
+        <label for="nombre">Curso</label>
+        <mat-select [compareWith]="setValueSelect" class="form-control" formControlName="curso">
+            <mat-option *ngFor="let curso of cursos$ | async" [value]="curso">{{ curso.nombre }}</mat-option>
+        </mat-select>
+      </div>
+
   </form>
 
   <div mat-dialog-actions>
-    <button mat-flat-button (click)="aceptar()" [disabled]="formulario.invalid" color="primary" [mat-dialog-close]="this.formulario.value" cdkFocusInitial>Aceptar</button>
+    <button mat-flat-button (click)="aceptar()" [disabled]="formulario.invalid" color="primary" cdkFocusInitial>Aceptar</button>
     <button mat-flat-button color="warn" (click)="cerrarModal()">Cancelar</button>
   </div>
 

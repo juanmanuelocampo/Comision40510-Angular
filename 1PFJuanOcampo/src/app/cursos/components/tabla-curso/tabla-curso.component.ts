@@ -23,7 +23,7 @@ export class TablacursoComponent {
   estadoventana: string = 'consulta';
   cursos$!: Observable<Array<Curso>>;
   dataSource!: MatTableDataSource<Curso>;
-  columnas: Array<string> = ['id', 'nombre', 'profesor', 'alumno', 'acciones'];
+  columnas: Array<string> = ['id', 'nombre', 'profesor', 'acciones'];
   sesion$!: Observable<Sesion>;
   cargando$!: Observable<Boolean>;
   ABMSubscription!: Subscription;
@@ -75,7 +75,7 @@ export class TablacursoComponent {
   }
 
   abrirModal(curso: Curso){
-    const dialogRef = this.dialog.open(FormCursoDialogComponent, {
+      const dialogRef = this.dialog.open(FormCursoDialogComponent, {
       data: {...curso, estadoventana:this.estadoventana} //Revisar tutor: es una buena práctica la forma en que envío el estadoventana?
     });
   }

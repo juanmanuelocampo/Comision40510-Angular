@@ -10,14 +10,14 @@ import { EffectsModule } from '@ngrx/effects';
 import { alumnoStateFeatureKey, reducer } from './alumno-state/alumno-state.reducer';;
 import { AlumnosEffects } from './alumno-state/alumno-state.effects';
 import { StoreModule } from '@ngrx/store';
-import { MisCursosDialogComponent } from './components/mis-cursos/mis-cursos-dialog.component';
+import { MisInscripcionesDialogComponent } from './components/mis-inscripciones/mis-inscripciones-dialog.component';
 
 
 @NgModule({
     declarations: [
         TablaalumnoComponent,
         FormAlumnoDialogComponent,
-        MisCursosDialogComponent,
+        MisInscripcionesDialogComponent,
     ],
     imports: [
         CommonModule,

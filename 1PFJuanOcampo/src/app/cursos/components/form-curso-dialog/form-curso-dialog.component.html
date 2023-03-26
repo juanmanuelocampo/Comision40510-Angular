@@ -20,12 +20,6 @@
             <mat-option *ngFor="let profesor of profesores$ | async" [value]="profesor">{{ profesor.nombre + ' ' + profesor.apellido }}</mat-option>
         </mat-select>
       </div>
-      <div class="form-group">
-        <label for="nombre">Alumno</label>
-        <mat-select [compareWith]="setValueSelect" class="form-control" formControlName="alumno">
-            <mat-option *ngFor="let alumno of alumnos$ | async" [value]="alumno">{{ alumno.nombre + ' ' + alumno.apellido }}</mat-option>
-        </mat-select>
-      </div>
   </form>
 
   <div mat-dialog-actions>

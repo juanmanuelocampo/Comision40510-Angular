@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { Alumno } from 'src/app/models/Alumno';
 import { Curso } from 'src/app/models/Curso';
+import { Inscripcion } from 'src/app/models/Inscripcion';
 
 export const cargarAlumnoState = createAction(
   '[AlumnoState] Cargar Alumnos States'
@@ -25,15 +26,3 @@ export const eliminarAlumnoState = createAction(
   '[AlumnoState] Eliminar alumno',
   props<{ alumno: Alumno }>()
 );
-
-export const cargarCursosAlumnoState = createAction(
-  '[AlumnoState] Cargar Cursos del Alumno States',
-  props<{ alumno: Alumno }>()
-);
-
-export const cursosAlumnoCargados = createAction(
-  '[AlumnoState] Cursos asociados al alumno',
-  props<{ cursos: Curso[] }>()
-);
-
-

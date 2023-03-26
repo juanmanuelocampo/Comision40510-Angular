@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TablainscripcionComponent } from './components/tabla-inscripciones/tabla-inscripciones.component';
-import { HistorialInscripcionComponent } from './components/historial-inscripciones/historial-inscripciones.component';
 import { FormInscripcionDialogComponent } from './components/form-inscripciones-dialog/form-inscripciones-dialog.component';
 import { MaterialModule } from '../material.module';
 import { SharedModule } from '../shared/shared.module';
@@ -16,7 +15,6 @@ import { InscripcionesRoutingModule } from './inscripciones-routing.module';
 @NgModule({
     declarations: [
         TablainscripcionComponent,
-        HistorialInscripcionComponent,
         FormInscripcionDialogComponent,
     ],
     imports: [

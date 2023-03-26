@@ -6,10 +6,8 @@ import { Observable } from 'rxjs/internal/Observable';
 import { Curso } from 'src/app/models/Curso';
 import { Profesor } from 'src/app/models/Profesor';
 import { ProfesorService } from 'src/app/profesores/services/profesor.service';
-import { AlumnoService } from 'src/app/alumnos/services/alumno.service';
 import { agregarCursoState, editarCursoState } from '../../curso-state/curso-state.actions';
 import { CursoState } from '../../curso-state/curso-state.reducer';
-import { Alumno } from 'src/app/models/Alumno';
 import { CursoService } from '../../services/cursos.service';
 
 @Component({
@@ -21,27 +19,27 @@ export class FormCursoDialogComponent implements OnInit {
     formulario: FormGroup;
     tituloVentana: string = 'Formulario de Curso ' + ((this.data.estadoventana === 'edicion')?'(Edición)':'(Alta)');
     profesores$!: Observable<Profesor[]>;
-    alumnos$!: Observable<Alumno[]>;
 
     constructor(
       private dialogRef: MatDialogRef<FormCursoDialogComponent>,
       @Inject(MAT_DIALOG_DATA) public data: any,
       private store: Store<CursoState>,
       private profesoreService: ProfesorService,
-      private alumnoService: AlumnoService,
       private cursoService: CursoService
     ){
       this.formulario = new FormGroup({
         id: new FormControl((this.data.estadoventana === 'edicion')?data.id: '', Validators.required),
         nombre: new FormControl((this.data.estadoventana === 'edicion')?data.nombre: '', Validators.required),
         profesor: new FormControl(this.data.profesor),
-        alumno: new FormControl(this.data.alumno),
       })
     }
     ngOnInit(): void {
         this.profesores$ = this.profesoreService.obtenerProfesoresAPI();
-        this.alumnos$ = this.alumnoService.obtenerAlumnosAPI();
+        this.cursoService.getNextIdAPI().subscribe((curso) => {
+          if(this.data.estadoventana === 'alta') this.formulario.controls['id'].setValue((curso[0]?.id === undefined)?1:parseInt(String(curso[0]?.id))+1);
+        })
     }
+
 
     async aceptar(){
       if (await this.cursoService.validacionesCursoAPI(this.formulario.value) == false) return;
@@ -69,12 +67,11 @@ export class FormCursoDialogComponent implements OnInit {
         id: this.formulario.value.id,
         nombre: this.formulario.value.nombre,
         profesor: this.formulario.value.profesor,
-        alumno: this.formulario.value.alumno,
       };
       return curso;
     }
 
     setValueSelect(o1: any, o2: any) {
       return (o1.id == o2.id);
-     }
+    }
 }

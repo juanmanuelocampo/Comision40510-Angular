@@ -1,4 +1,4 @@
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 import { Profesor } from 'src/app/models/Profesor';
 import * as ProfesorStateActions from './profesor-state.actions';
 
@@ -11,7 +11,7 @@ export interface ProfesorState {
 
 export const initialState: ProfesorState = {
   cargando: false,
-  profesores: []
+  profesores: [],
 };
 
 export const reducer = createReducer(

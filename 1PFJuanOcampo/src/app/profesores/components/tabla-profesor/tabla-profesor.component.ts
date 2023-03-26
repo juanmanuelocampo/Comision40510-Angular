@@ -13,6 +13,7 @@ import { Store } from '@ngrx/store';
 import { selectCargandoProfesores, selectProfesoresCargados } from '../../profesor-state/profesor-state.selectors';
 import { cargarProfesorState, eliminarProfesorState } from '../../profesor-state/profesor-state.actions';
 import { VentanaStatsService } from '../../../shared/services/ventana-stats.service';
+import { MisCursosDialogComponent } from '../mis-cursos/mis-cursos-dialog.component';
 
 @Component({
   selector: 'app-tablaprofesor',
@@ -69,14 +70,16 @@ export class TablaprofesorComponent {
     this.abrirModal(profesor);
   }
 
-  redirigirHistorial(profesor: Profesor){
-    //Si bien envío el id y el objeto completo. Se deberían enviar solo una u otra
-    this.router.navigate(['profesor/historial/' + profesor.id, profesor]);
-  }
-
   abrirModal(profesor: Profesor){
     const dialogRef = this.dialog.open(FormProfesorDialogComponent, {
       data: {...profesor, estadoventana:this.estadoventana} //Revisar tutor: es una buena práctica la forma en que envío el estadoventana?
     });
   }
+
+  abrirMisCursos(profesor: Profesor){
+    const dialogRef = this.dialog.open(MisCursosDialogComponent, {
+      data: {...profesor}
+    });
+  }
 }
+

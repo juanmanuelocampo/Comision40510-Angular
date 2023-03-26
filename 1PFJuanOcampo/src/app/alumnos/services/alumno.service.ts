@@ -5,6 +5,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { env } from '../../../environment/environment';
 import Swal from 'sweetalert2';
 import { Curso } from 'src/app/models/Curso';
+import { Inscripcion } from 'src/app/models/Inscripcion';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +37,7 @@ export class AlumnoService {
   }
 
   getAlumnoAPI(alumno:Alumno): Observable<Alumno>{
-    let auxObservable$ = this.http.get<Alumno>(`${env.apiURL}/alumno/${alumno.id}`, {
+    const auxObservable$ = this.http.get<Alumno>(`${env.apiURL}/alumno/${alumno.id}`, {
       headers: new HttpHeaders({
         'content-type': 'application/json',
         'encoding': 'UTF-8'
@@ -47,9 +48,8 @@ export class AlumnoService {
     return auxObservable$;
   }
 
-  obtenerCursosAlumnoAPI(alumno: Alumno): Observable<Curso[]>{
-    //console.log('desde API:',alumno)
-    let auxObservable$ = this.http.get<Curso[]>(`${env.apiURL}/curso?alumno.id=${alumno.id}`, {
+  getNextIdAPI(): Observable<Alumno[]>{
+    let auxObservable$ = this.http.get<Alumno[]>(`${env.apiURL}/alumno?_sort=id&_order=desc&_limit=1`, {
       headers: new HttpHeaders({
         'content-type': 'application/json',
         'encoding': 'UTF-8'
@@ -58,6 +58,19 @@ export class AlumnoService {
       catchError(this.capturarError)
     );
     return auxObservable$;
+  }
+
+  obtenerInscripcionesAlumnoAPI(alumno: Alumno): Observable<Inscripcion[]>{
+    console.log('desde API:',`${env.apiURL}/inscripcion?alumno.id=${alumno.id}`)
+    const auxObservable2$ = this.http.get<Inscripcion[]>(`${env.apiURL}/inscripcion?alumno.id=${alumno.id}`, {
+      headers: new HttpHeaders({
+        'content-type': 'application/json',
+        'encoding': 'UTF-8'
+      })
+    }).pipe(
+      catchError(this.capturarError)
+    );
+    return auxObservable2$;
   }
 
   eliminarAlumnoAPI(alumno: Alumno): Observable<Alumno>{

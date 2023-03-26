@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TablaprofesorComponent } from './components/tabla-profesor/tabla-profesor.component';
-import { HistorialProfesorComponent } from './components/historial-profesor/historial-profesor.component';
 import { FormProfesorDialogComponent } from './components/form-profesor-dialog/form-profesor-dialog.component';
 import { MaterialModule } from '../material.module';
 import { SharedModule } from '../shared/shared.module';
@@ -11,12 +10,13 @@ import { profesorStateFeatureKey, reducer } from './profesor-state/profesor-stat
 import { ProfesoresEffects } from './profesor-state/profesor-state.effects';
 import { StoreModule } from '@ngrx/store';
 import { ProfesoresRoutingModule } from './profesores-routing.module';
+import { MisCursosDialogComponent } from './components/mis-cursos/mis-cursos-dialog.component';
 
 
 @NgModule({
     declarations: [
         TablaprofesorComponent,
-        HistorialProfesorComponent,
+        MisCursosDialogComponent,
         FormProfesorDialogComponent,
     ],
     imports: [

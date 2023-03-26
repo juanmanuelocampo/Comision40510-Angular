@@ -3,120 +3,194 @@
     {
       "id": 1,
       "label": "Usuarios",
-      "y": 5
+      "y": 23
     },
     {
       "id": 2,
       "label": "Alumnos",
-      "y": 100
+      "y": 152
     },
     {
       "id": 3,
       "label": "Profesores",
-      "y": 14
+      "y": 52
     },
     {
       "id": 4,
       "label": "Cursos",
-      "y": 28
+      "y": 44
     },
     {
       "id": 5,
       "label": "Inscripciones",
-      "y": 5
+      "y": 37
     }
   ],
   "inscripcion": [
     {
-      "id": "2",
-      "fecha": "2023-03-21T03:00:00.000Z"
+      "id": 1,
+      "fecha": "2023-03-07T03:00:00.000Z",
+      "alumno": {
+        "id": 2,
+        "nombre": "habilitado",
+        "apellido": "aaa",
+        "email": "aaa@aa",
+        "fecnac": "2023-03-22T03:00:00.000Z",
+        "activo": true
+      },
+      "curso": {
+        "id": 1,
+        "nombre": "Angular",
+        "profesor": {
+          "id": 1,
+          "nombre": "Juan",
+          "apellido": "Ocampos",
+          "email": "dasda@dasd.com",
+          "fecnac": "1981-03-29T03:00:00.000Z",
+          "activo": true
+        }
+      }
+    },
+    {
+      "id": 2,
+      "fecha": "2023-03-29T03:00:00.000Z",
+      "alumno": {
+        "id": 2,
+        "nombre": "habilitado",
+        "apellido": "aaa",
+        "email": "aaa@aa",
+        "fecnac": "2023-03-22T03:00:00.000Z",
+        "activo": true
+      },
+      "curso": {
+        "id": 2,
+        "nombre": "VUE",
+        "profesor": {
+          "id": 1,
+          "nombre": "Juan",
+          "apellido": "Ocampos",
+          "email": "dasda@dasd.com",
+          "fecnac": "1981-03-29T03:00:00.000Z",
+          "activo": true
+        }
+      }
     }
   ],
   "usuario": [
-    {
-      "id": 1,
-      "usuario": "usuario",
-      "contrasena": "usuario",
-      "esAdmin": false
-    },
     {
       "id": "2",
       "usuario": "admin",
       "contrasena": "admin",
       "esAdmin": true
+    },
+    {
+      "id": 4,
+      "usuario": "dasd",
+      "contrasena": "asd",
+      "esAdmin": true
+    },
+    {
+      "id": 5,
+      "usuario": "addd",
+      "contrasena": "dad",
+      "esAdmin": true
     }
   ],
   "curso": [
     {
-      "id": "2",
+      "id": 1,
       "nombre": "Angular",
       "profesor": {
-        "id": "2",
-        "nombre": "Luciano",
-        "apellido": "Nitardi",
-        "email": "Profesor2@Profesor2",
-        "fecnac": "2023-03-21T03:00:00.000Z",
+        "id": 1,
+        "nombre": "Juan",
+        "apellido": "Ocampos",
+        "email": "dasda@dasd.com",
+        "fecnac": "1981-03-29T03:00:00.000Z",
         "activo": true
-      },
-      "alumno": {
-        "id": "2",
-        "nombre": "Belén",
-        "apellido": "Ocampo",
-        "email": "alumno11@alumno11.com",
-        "fecnac": "2017-03-23T03:00:00.000Z",
+      }
+    },
+    {
+      "id": 2,
+      "nombre": "VUE",
+      "profesor": {
+        "id": 1,
+        "nombre": "Juan",
+        "apellido": "Ocampos",
+        "email": "dasda@dasd.com",
+        "fecnac": "1981-03-29T03:00:00.000Z",
+        "activo": true
+      }
+    },
+    {
+      "id": 3,
+      "nombre": "VUE2",
+      "profesor": {
+        "id": 2,
+        "nombre": "Profesor2",
+        "apellido": "Profesor2",
+        "email": "qqq@ss",
+        "fecnac": "2023-03-22T03:00:00.000Z",
         "activo": true
       }
     }
   ],
   "alumno": [
     {
-      "id": "2",
-      "nombre": "Belén",
-      "apellido": "Ocampo",
-      "email": "alumno11@alumno11.com",
-      "fecnac": "2017-03-23T03:00:00.000Z",
-      "activo": true
+      "id": 1,
+      "nombre": "deshabilitado",
+      "apellido": "alumno1",
+      "email": "asd@dasd.com",
+      "fecnac": "2023-03-23T03:00:00.000Z",
+      "activo": false
     },
     {
-      "id": "3",
-      "nombre": "Popi",
-      "apellido": "Ocampo",
-      "email": "popi@popi",
-      "fecnac": "2023-03-31T03:00:00.000Z",
-      "activo": true
-    },
-    {
-      "id": "4",
-      "nombre": "4",
-      "apellido": "4",
-      "email": "4@4",
+      "id": 2,
+      "nombre": "habilitado",
+      "apellido": "aaa",
+      "email": "aaa@aa",
       "fecnac": "2023-03-22T03:00:00.000Z",
       "activo": true
     },
     {
-      "id": "5",
-      "nombre": "Deshabilitado",
-      "apellido": "Deshabilitado",
-      "email": "5@5",
-      "fecnac": "2023-03-29T03:00:00.000Z",
-      "activo": ""
+      "nombre": "adsda",
+      "apellido": "sdasd",
+      "email": "asdasd@sdasd.com",
+      "fecnac": "2023-03-21T03:00:00.000Z",
+      "activo": true,
+      "id": 3
     }
   ],
   "profesor": [
     {
-      "id": "1",
-      "nombre": "Deshabilitado",
-      "apellido": "Lerda",
-      "email": "Profesor1@Profesor1",
-      "fecnac": "2023-03-21T03:00:00.000Z",
-      "activo": false
+      "id": 1,
+      "nombre": "Juan",
+      "apellido": "Ocampos",
+      "email": "dasda@dasd.com",
+      "fecnac": "1981-03-29T03:00:00.000Z",
+      "activo": true
     },
     {
-      "id": "2",
-      "nombre": "Luciano",
-      "apellido": "Nitardi",
-      "email": "Profesor2@Profesor2",
-      "fecnac": "2023-03-21T03:00:00.000Z",
+      "id": 2,
+      "nombre": "Profesor2",
+      "apellido": "Profesor2",
+      "email": "qqq@ss",
+      "fecnac": "2023-03-22T03:00:00.000Z",
+      "activo": true
+    },
+    {
+      "nombre": "sdasd",
+      "apellido": "asdasd",
+      "email": "asdasd@asdasd",
+      "fecnac": "2023-03-30T03:00:00.000Z",
+      "activo": true,
+      "id": 3
+    },
+    {
+      "id": 4,
+      "nombre": "asd",
+      "apellido": "asd",
+      "email": "asdas@asd.com",
+      "fecnac": "2023-03-29T03:00:00.000Z",
       "activo": true
     }
   ]

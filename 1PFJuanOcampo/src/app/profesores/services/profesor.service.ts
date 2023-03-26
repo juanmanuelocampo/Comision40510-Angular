@@ -4,6 +4,7 @@ import { Profesor } from 'src/app/models/Profesor';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { env } from '../../../environment/environment';
 import Swal from 'sweetalert2';
+import { Curso } from 'src/app/models/Curso';
 
 @Injectable({
   providedIn: 'root'
@@ -34,8 +35,33 @@ export class ProfesorService {
       return auxObservable$;
   }
 
+  obtenerCursosProfesorAPI(profesor: Profesor): Observable<Curso[]>{
+    console.log('url:', `${env.apiURL}/curso?profesor.id=${profesor.id}`)
+    let auxObservable$ = this.http.get<Curso[]>(`${env.apiURL}/curso?profesor.id=${profesor.id}`, {
+      headers: new HttpHeaders({
+        'content-type': 'application/json',
+        'encoding': 'UTF-8'
+      })
+    }).pipe(
+      catchError(this.capturarError)
+    );
+    return auxObservable$;
+  }
+
   getProfesorAPI(profesor:Profesor): Observable<Profesor>{
     let auxObservable$ = this.http.get<Profesor>(`${env.apiURL}/profesor/${profesor.id}`, {
+      headers: new HttpHeaders({
+        'content-type': 'application/json',
+        'encoding': 'UTF-8'
+      })
+    }).pipe(
+      catchError(this.capturarError)
+    );
+    return auxObservable$;
+  }
+
+  getNextIdAPI(): Observable<Profesor[]>{
+    let auxObservable$ = this.http.get<Profesor[]>(`${env.apiURL}/profesor?_sort=id&_order=desc&_limit=1`, {
       headers: new HttpHeaders({
         'content-type': 'application/json',
         'encoding': 'UTF-8'

@@ -5,7 +5,7 @@
   <form [formGroup]="formulario">
       <div class="form-group">
         <label for="id">Id</label>
-        <input type="text" formControlName="id" class="form-control" placeholder="Id" cdkFocusInitial>
+        <input type="text" formControlName="id" class="form-control" placeholder="Id" cdkFocusInitial [disabled]="true">
       </div>
       <div class="form-group">
         <label for="nombre">Nombre</label>
@@ -32,9 +32,9 @@
         </app-validacion>
       </div>
 
-      <mat-form-field class="form-group">
+      <mat-form-field class="form-group mt-2" appearance="outline">
         <label for="fecnac">Nacimiento</label>
-        <input matInput [matDatepicker]="fecnac" formControlName="fecnac">
+        <input class="form-control" matInput [matDatepicker]="fecnac" formControlName="fecnac">
         <mat-datepicker-toggle matSuffix [for]="fecnac"></mat-datepicker-toggle>
         <mat-datepicker #fecnac></mat-datepicker>
       </mat-form-field>

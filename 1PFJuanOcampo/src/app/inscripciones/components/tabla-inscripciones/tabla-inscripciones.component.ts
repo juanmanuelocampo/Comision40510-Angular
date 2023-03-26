@@ -23,7 +23,7 @@ export class TablainscripcionComponent {
   estadoventana: string = 'consulta';
   inscripciones$!: Observable<Array<Inscripcion>>;
   dataSource!: MatTableDataSource<Inscripcion>;
-  columnas: Array<string> = ['id', 'fecha', 'acciones'];
+  columnas: Array<string> = ['id', 'fecha', 'curso', 'alumno', 'acciones'];
   sesion$!: Observable<Sesion>;
   cargando$!: Observable<Boolean>;
   ABMSubscription!: Subscription;
@@ -67,11 +67,6 @@ export class TablainscripcionComponent {
     this.estadoventana = 'alta';
     let inscripcion:Inscripcion = this.inscripcionService.nuevoInscripcion;
     this.abrirModal(inscripcion);
-  }
-
-  redirigirHistorial(inscripcion: Inscripcion){
-    //Si bien envío el id y el objeto completo. Se deberían enviar solo una u otra
-    this.router.navigate(['inscripcion/historial/' + inscripcion.id, inscripcion]);
   }
 
   abrirModal(inscripcion: Inscripcion){

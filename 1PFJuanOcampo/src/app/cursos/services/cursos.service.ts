@@ -15,7 +15,6 @@ export class CursoService {
   constructor(
     private http: HttpClient,
     private servicioProfesor: ProfesorService,
-    private servicioAlumno: AlumnoService,
   ) {
   }
 
@@ -23,14 +22,6 @@ export class CursoService {
     id: 0,
     nombre: '',
     profesor: {
-      id: 0,
-      nombre: '',
-      apellido: '',
-      email: '',
-      fecnac: new Date(),
-      activo: false,
-    },
-    alumno: {
       id: 0,
       nombre: '',
       apellido: '',
@@ -46,13 +37,6 @@ export class CursoService {
       Swal.fire({text: `Atención: El profesor seleccionado se encuentra deshabilitado. Por lo tanto, no podrá continuar.`, icon: 'warning'})
       return false;
     }
-
-    const auxAlumno = await this.servicioAlumno.getAlumnoAPI(curso.alumno).toPromise()
-    if (curso.alumno.activo == false){
-      Swal.fire({text: `Atención: El alumno seleccionado se encuentra deshabilitado. Por lo tanto, no podrá continuar.`, icon: 'warning'})
-      return false;
-    }
-    console.log('3')
     return true;
   }
 
@@ -67,6 +51,19 @@ export class CursoService {
       );
       return auxObservable$;
   }
+
+  getNextIdAPI(): Observable<Curso[]>{
+    let auxObservable$ = this.http.get<Curso[]>(`${env.apiURL}/curso?_sort=id&_order=desc&_limit=1`, {
+      headers: new HttpHeaders({
+        'content-type': 'application/json',
+        'encoding': 'UTF-8'
+      })
+    }).pipe(
+      catchError(this.capturarError)
+    );
+    return auxObservable$;
+  }
+
 
   eliminarCursoAPI(curso: Curso): Observable<Curso>{
       let auxObservable$ = this.http.delete<Curso>(`${env.apiURL}/curso/${curso.id}`, {
