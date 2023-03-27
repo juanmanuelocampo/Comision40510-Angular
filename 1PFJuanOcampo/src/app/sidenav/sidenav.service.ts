@@ -13,14 +13,11 @@ export class SidenavService {
         return this.sidenav.open();
     }
 
-
     public close() {
         return this.sidenav.close();
     }
 
     public toggle(): void {
-      //console.log('desde dentro del sidebar')
-      //console.log(this.sidenav) //Si es undefined, es porque no se le pasó vien el ViewChild
       this.sidenav.toggle();
     }
   }

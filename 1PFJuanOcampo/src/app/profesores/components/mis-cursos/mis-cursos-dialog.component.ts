@@ -21,7 +21,6 @@ export class MisCursosDialogComponent {
   ){}
 
   ngOnInit(): void {
-    console.log(JSON.stringify(this.data))
     this.dataSource = new MatTableDataSource<Curso>();
 
     this.cursos$ = this.servicioProfesor.obtenerCursosProfesorAPI(this.data);

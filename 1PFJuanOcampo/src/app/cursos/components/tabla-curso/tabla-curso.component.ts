@@ -69,11 +69,6 @@ export class TablacursoComponent {
     this.abrirModal(curso);
   }
 
-  redirigirHistorial(curso: Curso){
-    //Si bien envío el id y el objeto completo. Se deberían enviar solo una u otra
-    this.router.navigate(['curso/historial/' + curso.id, curso]);
-  }
-
   abrirModal(curso: Curso){
       const dialogRef = this.dialog.open(FormCursoDialogComponent, {
       data: {...curso, estadoventana:this.estadoventana} //Revisar tutor: es una buena práctica la forma en que envío el estadoventana?

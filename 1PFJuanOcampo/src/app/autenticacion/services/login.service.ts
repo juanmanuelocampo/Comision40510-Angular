@@ -41,7 +41,6 @@ export class LoginService {
       })
       return false;
     }else{
-      console.log(auxUsuario)
       if (auxUsuario && auxUsuario[0]?.esAdmin){
         mensaje = 'Atención: La sesión se iniciará con permisos de ADMINISTRADOR.';
         usuario.esAdmin = true;

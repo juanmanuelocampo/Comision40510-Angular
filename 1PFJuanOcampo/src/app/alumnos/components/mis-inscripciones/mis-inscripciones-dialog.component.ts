@@ -21,9 +21,7 @@ export class MisInscripcionesDialogComponent {
   ){}
 
   ngOnInit(): void {
-    console.log(JSON.stringify(this.data))
     this.dataSource = new MatTableDataSource<Inscripcion>();
-
     this.inscripciones$ = this.servicioAlumno.obtenerInscripcionesAlumnoAPI(this.data);
     this.inscripciones$.subscribe((inscripciones)=>{
       this.dataSource.data = inscripciones;

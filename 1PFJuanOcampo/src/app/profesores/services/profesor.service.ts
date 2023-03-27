@@ -36,7 +36,6 @@ export class ProfesorService {
   }
 
   obtenerCursosProfesorAPI(profesor: Profesor): Observable<Curso[]>{
-    console.log('url:', `${env.apiURL}/curso?profesor.id=${profesor.id}`)
     let auxObservable$ = this.http.get<Curso[]>(`${env.apiURL}/curso?profesor.id=${profesor.id}`, {
       headers: new HttpHeaders({
         'content-type': 'application/json',

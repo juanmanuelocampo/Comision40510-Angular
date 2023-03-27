@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TablacursoComponent } from './components/tabla-curso/tabla-curso.component';
-import { HistorialCursoComponent } from './components/historial-curso/historial-curso.component';
 import { FormCursoDialogComponent } from './components/form-curso-dialog/form-curso-dialog.component';
 import { MaterialModule } from '../material.module';
 import { SharedModule } from '../shared/shared.module';
@@ -16,7 +15,6 @@ import { CursosRoutingModule } from './cursos-routing.module';
 @NgModule({
     declarations: [
         TablacursoComponent,
-        HistorialCursoComponent,
         FormCursoDialogComponent,
     ],
     imports: [

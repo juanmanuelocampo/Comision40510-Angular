@@ -1,18 +1,22 @@
 import { Injectable } from '@angular/core';
-import { catchError, Observable, throwError } from 'rxjs';
+import { catchError, map, Observable, throwError, concatMap } from 'rxjs';
 import { Alumno } from 'src/app/models/Alumno';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { env } from '../../../environment/environment';
 import Swal from 'sweetalert2';
-import { Curso } from 'src/app/models/Curso';
 import { Inscripcion } from 'src/app/models/Inscripcion';
+import { SesionService } from 'src/app/core/services/sesion.service';
+import { Sesion } from 'src/app/models/sesion';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class AlumnoService {
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private sesionService: SesionService
+  ) {
   }
 
   nuevoAlumno: Alumno = {
@@ -25,16 +29,31 @@ export class AlumnoService {
   };
 
   obtenerAlumnosAPI(): Observable<Alumno[]>{
-      let auxObservable$ = this.http.get<Alumno[]>(`${env.apiURL}/alumno`, {
-        headers: new HttpHeaders({
-          'content-type': 'application/json',
-          'encoding': 'UTF-8'
-        })
-      }).pipe(
-        catchError(this.capturarError)
-      );
-      return auxObservable$;
-  }
+    let auxObservable$ = this.http.get<Alumno[]>(`${env.apiURL}/alumno`, {
+      headers: new HttpHeaders({
+        'content-type': 'application/json',
+        'encoding': 'UTF-8'
+      })
+    }).pipe(
+      catchError(this.capturarError)
+    );
+    return auxObservable$;
+}
+
+/*   obtenerAlumnosAPI(): Observable<Alumno[]>{
+    return this.sesionService.obtenerSesion().pipe
+    (
+      concatMap( (sesion) => {
+        //Para poder desarrollar esta funcionalidad tengo que vincular el usuario con el alumno (y se va muy grande)
+        const auxUrl: string = (sesion.usuarioActivo?.esAdmin)? `${env.apiURL}/alumno` : `${env.apiURL}/alumno`;
+        return this.http.get<Alumno[]>(
+            auxUrl,
+            {headers: new HttpHeaders({'content-type': 'application/json','encoding': 'UTF-8'})}
+        )
+      }
+      ) //Cierro el map
+      ) //Cierro el pipe
+  } */
 
   getAlumnoAPI(alumno:Alumno): Observable<Alumno>{
     const auxObservable$ = this.http.get<Alumno>(`${env.apiURL}/alumno/${alumno.id}`, {
@@ -61,7 +80,6 @@ export class AlumnoService {
   }
 
   obtenerInscripcionesAlumnoAPI(alumno: Alumno): Observable<Inscripcion[]>{
-    console.log('desde API:',`${env.apiURL}/inscripcion?alumno.id=${alumno.id}`)
     const auxObservable2$ = this.http.get<Inscripcion[]>(`${env.apiURL}/inscripcion?alumno.id=${alumno.id}`, {
       headers: new HttpHeaders({
         'content-type': 'application/json',

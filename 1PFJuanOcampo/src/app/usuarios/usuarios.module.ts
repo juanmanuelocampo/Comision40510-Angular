@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TablausuarioComponent } from './components/tabla-usuario/tabla-usuario.component';
-import { HistorialUsuarioComponent } from './components/historial-usuario/historial-usuario.component';
 import { FormUsuarioDialogComponent } from './components/form-usuario-dialog/form-usuario-dialog.component';
 import { MaterialModule } from '../material.module';
 import { SharedModule } from '../shared/shared.module';
@@ -16,7 +15,6 @@ import { UsuariosRoutingModule } from './usuarios-routing.module';
 @NgModule({
     declarations: [
         TablausuarioComponent,
-        HistorialUsuarioComponent,
         FormUsuarioDialogComponent,
     ],
     imports: [
