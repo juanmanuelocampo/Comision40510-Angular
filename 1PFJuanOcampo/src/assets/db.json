@@ -3,17 +3,17 @@
     {
       "id": 1,
       "label": "Usuarios",
-      "y": 23
+      "y": 29
     },
     {
       "id": 2,
       "label": "Alumnos",
-      "y": 152
+      "y": 157
     },
     {
       "id": 3,
       "label": "Profesores",
-      "y": 52
+      "y": 53
     },
     {
       "id": 4,
@@ -23,7 +23,7 @@
     {
       "id": 5,
       "label": "Inscripciones",
-      "y": 37
+      "y": 38
     }
   ],
   "inscripcion": [
@@ -78,22 +78,16 @@
   ],
   "usuario": [
     {
-      "id": "2",
+      "id": 1,
       "usuario": "admin",
       "contrasena": "admin",
       "esAdmin": true
     },
     {
-      "id": 4,
-      "usuario": "dasd",
-      "contrasena": "asd",
-      "esAdmin": true
-    },
-    {
-      "id": 5,
-      "usuario": "addd",
-      "contrasena": "dad",
-      "esAdmin": true
+      "id": 2,
+      "usuario": "user",
+      "contrasena": "user",
+      "esAdmin": false
     }
   ],
   "curso": [

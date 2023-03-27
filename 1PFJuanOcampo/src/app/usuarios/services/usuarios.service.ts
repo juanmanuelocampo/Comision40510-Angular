@@ -32,6 +32,18 @@ export class UsuarioService {
       return auxObservable$;
   }
 
+  getUsuarioAPI(usuario:Usuario): Observable<Usuario[]>{
+    let auxObservable$ = this.http.get<Usuario[]>(`${env.apiURL}/usuario?usuario=${usuario.usuario}&contrasena=${usuario.contrasena}&limit=1`, {
+      headers: new HttpHeaders({
+        'content-type': 'application/json',
+        'encoding': 'UTF-8'
+      })
+    }).pipe(
+      catchError(this.capturarError)
+    );
+    return auxObservable$;
+  }
+
   getNextIdAPI(): Observable<Usuario[]>{
     let auxObservable$ = this.http.get<Usuario[]>(`${env.apiURL}/usuario?_sort=id&_order=desc&_limit=1`, {
       headers: new HttpHeaders({

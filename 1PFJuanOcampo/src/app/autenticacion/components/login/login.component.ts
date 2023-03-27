@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Usuario } from 'src/app/models/Usuario';
 import { LoginService } from '../../services/login.service';
-import Swal from'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +14,6 @@ export class LoginComponent implements OnInit {
   sesionIniciada: Boolean = false;
 
   constructor(
-
     public loginService: LoginService,
     private router: Router
   ){}
@@ -30,7 +27,9 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    let mensaje = '';
+    this.loginService.loginApi(this.formulario.value);
+
+    /* let mensaje = '';
     if((this.formulario.value.usuario == 'admin' && this.formulario.value.contrasena == 'admin') || (this.formulario.value.usuario == 'user' && this.formulario.value.contrasena == 'user')){
       this.sesionIniciada = true;
       if (this.formulario.value.usuario == 'admin'){
@@ -64,6 +63,6 @@ export class LoginComponent implements OnInit {
         confirmButtonText: 'Aceptar'
       })
       return;
-    }
+    } */
   }
 }
